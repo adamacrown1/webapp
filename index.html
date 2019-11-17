@@ -33,7 +33,11 @@
 				url: 'https://dev-602311.okta.com/api/v1/users?limit=25',
 				headers: {
 					'Authorization' : 'SSWS ' + accessToken,
-					'Access-Control-Allow-Origin' : 'https://adamacrown1.github.io'
+					'Access-Control-Allow-Origin' : 'https://adamacrown1.github.io/webapp/',
+					'Access-Control-Allow-Methods' : 'GET',
+					'Content-Type' : 'application/json',
+					'Accept' : 'application/json',
+					'Access-Control-Allow-Headers' : 'Origin, Content-Type, Accept'
 				},
 				success: function(response) {
 					// Received messages!
