@@ -2,6 +2,44 @@
 <title>OAuth Authorization Code + PKCE in Vanilla JS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+
+<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<title>Salesforce Manager</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-light bg-light">
+			<span class="navbar-brand mb-0 h1">Salesforce Manager</span>	
+			<button type="button" class="btn btn-primary" onclick="myFunction()">Log In</button>
+			<button type="button" class="btn btn-primary" onclick="callUsersApi()">Users API</button>
+		</nav>
+		
+		<div class="flex-center full-height">
+				<div class="content">
+						<a href="#" id="start">Click to Sign In</a>
+						<div id="token" class="hidden">
+								<h2>Access Token</h2>
+								<div id="access_token" class="code"></div>
+						</div>
+						<div id="idToken" class="hidden">
+								<h2>ID Token</h2>
+								<div id="id_token" class="code"></div>
+						</div>
+						<div id="error" class="hidden">
+								<h2>Error</h2>
+								<div id="error_details" class="code"></div>
+						</div>
+				</div>
+		</div>  
+		
+		</body>
+		
 <script>
 // Configure your application and authorization server details
 var config = {
@@ -13,23 +51,7 @@ var config = {
 };
 </script>
 
-<div class="flex-center full-height">
-		<div class="content">
-				<a href="#" id="start">Click to Sign In</a>
-				<div id="token" class="hidden">
-						<h2>Access Token</h2>
-						<div id="access_token" class="code"></div>
-				</div>
-				<div id="idToken" class="hidden">
-						<h2>ID Token</h2>
-						<div id="id_token" class="code"></div>
-				</div>
-				<div id="error" class="hidden">
-						<h2>Error</h2>
-						<div id="error_details" class="code"></div>
-				</div>
-		</div>
-</div>  
+
 
 <script>
 //////////////////////////////////////////////////////////////////////
@@ -66,9 +88,10 @@ document.getElementById("start").addEventListener("click", async function(e){
 var q = parseQueryString(window.location.search.substring(1));
 // Check if the server returned an error string
 if(q.error) {
-		alert("Error returned from authorization server: "+q.error);
-		document.getElementById("error_details").innerText = q.error+"\n\n"+q.error_description;
-		document.getElementById("error").classList = "";
+		//alert("Error returned from authorization server: "+q.error);
+		window.location = "https://google.com"
+	//	document.getElementById("error_details").innerText = q.error+"\n\n"+q.error_description;
+	//	document.getElementById("error").classList = "";
 }
 // If the server returned an authorization code, attempt to exchange it for an access token
 if(q.code) {
