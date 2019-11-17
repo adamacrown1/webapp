@@ -22,11 +22,17 @@
 	document.getElementById("adminButton").onclick = function () {
 		var access_token = localStorage.getItem("access_token")
 		var id_token = localStorage.getItem("id_token")
-			
+		var role = localStorage.getItem("role")
+		
+		localStorage.removeItem("access_token")
+		localStorage.removeItem("id_token")
+		localStorage.removeItem("role")
+		
 		console.log(access_token)
 		console.log(id_token)
+		console.log(role)
 		
-		if (access_token == null) {
+		if (access_token == null or role != "admin") {
 			
 			window.location.replace("https://adamacrown1.github.io/webapp/404/404.html");
 		
