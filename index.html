@@ -92,7 +92,7 @@ if(q.code) {
 						
 						document.getElementById("id_token").innerText = body.id_token;
 						document.getElementById("start").classList = "hidden";
-						document.getElementById("token").classList = "";
+						document.getElementById("idToken").classList = "";
 						// Replace the history entry to remove the auth code from the browser address bar
 						window.history.replaceState({}, null, "/");
 				}, function(request, error) {
