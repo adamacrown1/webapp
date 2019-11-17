@@ -20,6 +20,10 @@ var config = {
 						<h2>Access Token</h2>
 						<div id="access_token" class="code"></div>
 				</div>
+				<div id="idToken" class="hidden">
+						<h2>ID Token</h2>
+						<div id="id_token" class="code"></div>
+				</div>
 				<div id="error" class="hidden">
 						<h2>Error</h2>
 						<div id="error_details" class="code"></div>
@@ -83,6 +87,10 @@ if(q.code) {
 						// Initialize your application now that you have an access token.
 						// Here we just display it in the browser.
 						document.getElementById("access_token").innerText = body.access_token;
+						document.getElementById("start").classList = "hidden";
+						document.getElementById("token").classList = "";
+						
+						document.getElementById("id_token").innerText = body.id_token;
 						document.getElementById("start").classList = "hidden";
 						document.getElementById("token").classList = "";
 						// Replace the history entry to remove the auth code from the browser address bar
