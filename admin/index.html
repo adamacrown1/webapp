@@ -21,14 +21,16 @@
 		
 	document.getElementById("adminButton").onclick = function () {
 		var access_token = localStorage.getItem("access_token")
-			var id_token = localStorage.getItem("id_token")
-			console.log(access_token)
-			console.log(id_token)
+		var id_token = localStorage.getItem("id_token")
+			
+		console.log(access_token)
+		console.log(id_token)
+		
+		if (access_token == "") {
+			
+			window.location.replace("https://adamacrown1.github.io/webapp/404/404.html");
+		
 			};
-
-			
-			
-			
 			
 		</script>
 		
