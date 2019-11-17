@@ -32,7 +32,8 @@
 			$.ajax({
 				url: 'https://dev-602311.okta.com/api/v1/users?limit=25',
 				headers: {
-					Authorization : 'SSWS ' + accessToken
+					'Authorization' : 'SSWS ' + accessToken,
+					'Access-Control-Allow-Origin' : 'https://adamacrown1.github.io'
 				},
 				success: function(response) {
 					// Received messages!
