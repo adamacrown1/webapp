@@ -124,11 +124,15 @@ if(q.code) {
 						// Here we just display it in the browser.
 						document.getElementById("access_token").innerText = body.access_token;
 						access_token_parse = body.access_token
+						var access_token_parse1 = body.access_token
+						localStorage.setItem("access_token", access_token_parse1);
 						document.getElementById("start").classList = "hidden";
 						//document.getElementById("token").classList = "";
 						
 						document.getElementById("id_token").innerText = body.id_token;
 						id_token_parse = body.id_token
+						var id_token_parse1 = body.id_token
+						localStorage.setItem("id_token", id_token_parse1);
 						document.getElementById("start").classList = "hidden";
 						//document.getElementById("idToken").classList = "";
 						// Replace the history entry to remove the auth code from the browser address bar
