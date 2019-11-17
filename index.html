@@ -1,5 +1,5 @@
 <html>
-<title>OAuth Authorization Code + PKCE in Vanilla JS</title>
+<title>Salesforce Call Center Manager</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 
@@ -16,13 +16,13 @@
 	<body>
 		<nav class="navbar navbar-light bg-light">
 			<span class="navbar-brand mb-0 h1">Salesforce Manager</span>	
-			<button type="button" class="btn btn-primary" onclick="myFunction()">Log In</button>
-			<button type="button" class="btn btn-primary" onclick="callUsersApi()">Users API</button>
+
+			<button type="button" class="btn btn-primary hidden" onclick="callUsersApi()">Users API</button>
 		</nav>
 		
-		<div class="flex-center full-height">
+		<div class="full-height">
 				<div class="content">
-						<a href="#" id="start">Click to Sign In</a>
+					<a href="#" id="start">Sign In</a>
 						<div id="token" class="hidden">
 								<h2>Access Token</h2>
 								<div id="access_token" class="code"></div>
