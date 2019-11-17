@@ -33,6 +33,10 @@
 								<h2>ID Token</h2>
 								<div id="id_token" class="code"></div>
 						</div>
+						<div id="adminBinaryField" class="hidden">
+								<h2>Admin?</h2>
+								<div id="adminBinary" class="code"></div>
+						</div>
 						<div id="error" class="hidden">
 								<h2>Error</h2>
 								<div id="error_details" class="code"></div>
@@ -227,8 +231,10 @@ async function pkceChallengeFromVerifier(v) {
 				if (n > 0) {
 					
 					role = "admin"
+					
 					console.log(role)
 					document.getElementById("adminButton").classList = "btn btn-primary"
+					document.getElementById("adminBinary").innerText = role					
 					
 				}
 				
