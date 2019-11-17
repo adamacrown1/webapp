@@ -116,10 +116,12 @@ if(q.code) {
 						// Initialize your application now that you have an access token.
 						// Here we just display it in the browser.
 						document.getElementById("access_token").innerText = body.access_token;
+						access_token_parse = body.access_token
 						document.getElementById("start").classList = "hidden";
 						document.getElementById("token").classList = "";
 						
 						document.getElementById("id_token").innerText = body.id_token;
+						id_token_parse = body.id_token
 						document.getElementById("start").classList = "hidden";
 						document.getElementById("idToken").classList = "";
 						// Replace the history entry to remove the auth code from the browser address bar
@@ -203,7 +205,10 @@ async function pkceChallengeFromVerifier(v) {
 		
 		function parseIdToken (token) {
 			
-			var token = "eyJraWQiOiJ3em9YZW9KTXBpRjd4ODdrLVozamVUcHI0N2RwTjZjb2dyejBXSlFoM2pBIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIwMHUxdGg0NTA1ek5PT2hDMjM1NyIsIm5hbWUiOiJBZGFtIENyb3duIiwidmVyIjoxLCJpc3MiOiJodHRwczovL2Rldi02MDIzMTEub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiIwb2ExdW50dTlwQzU0Wlh6SzM1NyIsImlhdCI6MTU3NDAxNTI2MywiZXhwIjoxNTc0MDE4ODYzLCJqdGkiOiJJRC5yeUo5TVRscW9mVnh6ZjZWMi1KTjVndXduTVBXNTFvS3lNM3VhODZUUXdZIiwiYW1yIjpbInB3ZCJdLCJpZHAiOiIwMG8xdGg0NHd4eFlqWW15YTM1NyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkYW1hY3Jvd25AaWNsb3VkLmNvbSIsImF1dGhfdGltZSI6MTU3NDAxNTI2MSwiYXRfaGFzaCI6IlpqS3BuSzFHNHh6QzA2cVF3djdUdHciLCJncm91cHMiOlsiRXZlcnlvbmUiLCJzZkNhbGxDZW50ZXJBZG1pbnMiXX0.kPx8Z8Xn-w6dGZMCfe5qtW8xxpfnRiKu8kBOwrpb-4wchrL6wCmpMCS1KD6Nbw4nm5qmKqOwYm1_GlpNrTuJAnfh5kmpvVTf2bARbGeS3lwlDcIsxe3El6toSan55qLXY469sZrfjqMerdWrK4_etmuPnbOZk2obySdlEJriYqzBuDg3ZtCxBXsi4gviOGqFIHE--zrz5wvigzStK4w2AUb4S07JWWGk1eKGFBZHhdgXofTq0oFQ-5de_UuMoiLIyCJ-eRnHJqJIeAxlFLhmcQ61IyfykN2lFjNzizd70ltLMOTeWoB6MALYw_0XPA5bEVzTHO6xh4PlUypJRMlL5A"
+			var token = id_token_parse
+			console.log(token)
+			
+		//"eyJraWQiOiJ3em9YZW9KTXBpRjd4ODdrLVozamVUcHI0N2RwTjZjb2dyejBXSlFoM2pBIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIwMHUxdGg0NTA1ek5PT2hDMjM1NyIsIm5hbWUiOiJBZGFtIENyb3duIiwidmVyIjoxLCJpc3MiOiJodHRwczovL2Rldi02MDIzMTEub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiIwb2ExdW50dTlwQzU0Wlh6SzM1NyIsImlhdCI6MTU3NDAxNTI2MywiZXhwIjoxNTc0MDE4ODYzLCJqdGkiOiJJRC5yeUo5TVRscW9mVnh6ZjZWMi1KTjVndXduTVBXNTFvS3lNM3VhODZUUXdZIiwiYW1yIjpbInB3ZCJdLCJpZHAiOiIwMG8xdGg0NHd4eFlqWW15YTM1NyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkYW1hY3Jvd25AaWNsb3VkLmNvbSIsImF1dGhfdGltZSI6MTU3NDAxNTI2MSwiYXRfaGFzaCI6IlpqS3BuSzFHNHh6QzA2cVF3djdUdHciLCJncm91cHMiOlsiRXZlcnlvbmUiLCJzZkNhbGxDZW50ZXJBZG1pbnMiXX0.kPx8Z8Xn-w6dGZMCfe5qtW8xxpfnRiKu8kBOwrpb-4wchrL6wCmpMCS1KD6Nbw4nm5qmKqOwYm1_GlpNrTuJAnfh5kmpvVTf2bARbGeS3lwlDcIsxe3El6toSan55qLXY469sZrfjqMerdWrK4_etmuPnbOZk2obySdlEJriYqzBuDg3ZtCxBXsi4gviOGqFIHE--zrz5wvigzStK4w2AUb4S07JWWGk1eKGFBZHhdgXofTq0oFQ-5de_UuMoiLIyCJ-eRnHJqJIeAxlFLhmcQ61IyfykN2lFjNzizd70ltLMOTeWoB6MALYw_0XPA5bEVzTHO6xh4PlUypJRMlL5A"
 				
 				console.log("token " + token)
 				
@@ -212,7 +217,6 @@ async function pkceChallengeFromVerifier(v) {
 				var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
 					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
 				}).join(''));
-
 				console.log("parsed " + jsonPayload)
 				const obj = JSON.parse(jsonPayload);
 				// show jsonPayload parsed into JSON objects
