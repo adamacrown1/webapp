@@ -15,5 +15,21 @@
 	<body>
 		<nav class="navbar navbar-light bg-light">
 			<span class="navbar-brand mb-0 h1">Salesforce Admin Manager</span>
+			<button id="adminButton" type="button" class="invisible">Admin</button>
 		</nav>
+		<script type="text/javascript">
+		
+	document.getElementById("adminButton").onclick = function () {
+		var access_token = localStorage.getItem("access_token")
+			var id_token = localStorage.getItem("id_token")
+			console.log(access_token)
+			console.log(id_token)
+			};
+
+			
+			
+			
+			
+		</script>
+		
 </html>
