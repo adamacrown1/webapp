@@ -91,6 +91,8 @@ document.getElementById("start").addEventListener("click", async function(e){
 				+ "&code_challenge="+encodeURIComponent(code_challenge)
 				+ "&code_challenge_method=S256"
 				;
+	
+	console.log(url)
 		// Redirect to the authorization server
 		window.location = url;
 });
