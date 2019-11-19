@@ -17,20 +17,55 @@
 			<span class="navbar-brand mb-0 h1">Salesforce Admin Manager</span>
 			<button id="adminButton" type="button">Admin</button>
 		</nav>
-		<script type="text/javascript">
 		
-	document.getElementById("adminButton").onclick = function () {
-		var access_token = localStorage.getItem("access_token")
-		var id_token = localStorage.getItem("id_token")
-		var role = localStorage.getItem("role")
 		
-	//	localStorage.removeItem("access_token")
-	//	localStorage.removeItem("id_token")
-	//	localStorage.removeItem("role")
+		<script>
+			// Configure your application and authorization server details
+			
+			function launchAdmin() {
+				
+				window.location = "https://google.com"
+				
+			}
+			
+
+			function launchUrl() {
+			var state = uuidv4();
+			var nonce = uuidv4();
+			
+			console.log(state)
+			console.log(nonce)
+			
+			var config = {
+					client_id: "0oa1untu9pC54ZXzK357",
+					redirect_uri: "https://adamacrown1.github.io/webapp/",
+					authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
+					token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
+					requested_scopes: "openid profile",
+			
+			};
 		
-		console.log(access_token)
-		console.log(id_token)
-		console.log(role)
+			var url = config.authorization_endpoint 
+						+ "?response_type=token"
+						+ "&client_id="+encodeURIComponent(config.client_id)
+						+ "&state="+encodeURIComponent(state)
+						+ "&scope="+encodeURIComponent(config.requested_scopes)
+						+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
+						+ "&nonce="+"1234";
+				// Redirect to the authorization server
+				window.location = url;
+				console.log(url)
+			};
+					
+					function uuidv4() {
+						return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+							var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+							 return v.toString(16);
+							
+						});
+					}
+					
+		</script>
 		
 		if (role !== "admin") {
 			
