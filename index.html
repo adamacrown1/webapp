@@ -17,14 +17,15 @@
 		<nav class="navbar navbar-light bg-light">
 			<span class="navbar-brand mb-0 h1">Salesforce Manager</span>	
 
-			<button type="button" class="btn btn-primary" onclick="parseIdToken()">Parse Token</button>
-			<button id="adminButton" type="button" class="invisible">Admin</button>
+				<button type="button" class="btn btn-primary" onclick="launchUrl()">Launch</button>
+				<button type="button" class="btn btn-primary" onclick="parseIdToken()">Parse Token</button>
+				<button id="adminButton" type="button" class="btn btn-primary" onclick="launchAdmin()">Admin</button>
 			
 		</nav>
 		
 		<div class="full-height">
 				<div class="content">
-					<a href="#" id="start">Sign In</a>
+					<!--<a href="#" id="start">Sign In</a>-->
 						<div id="token" class="hidden">
 								<h2>Access Token</h2>
 								<div id="access_token" class="code"></div>
@@ -46,21 +47,66 @@
 		
 		</body>
 		
-	
-<script type="text/javascript">
-	document.getElementById("adminButton").onclick = function () {
-		location.href = "https://adamacrown1.github.io/webapp/admin/index.html";
-	};
-</script>
-	
-<script>
+		
+		<script>
+			// Configure your application and authorization server details
+
+			
+			function launchAdmin() {
+				
+				window.location = "https://google.com"
+				
+			}
+			
+			
+			function launchUrl() {
+
+			var state = uuidv4();
+			var nonce = uuidv4();
+			
+			console.log(state)
+			console.log(nonce)
+			
+			var config = {
+					client_id: "0oa1untu9pC54ZXzK357",
+					redirect_uri: "https://adamacrown1.github.io/webapp/",
+					authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
+					token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
+					requested_scopes: "openid profile",
+			
+			};
+		
+			var url = config.authorization_endpoint 
+						+ "?response_type=token"
+						+ "&client_id="+encodeURIComponent(config.client_id)
+						+ "&state="+encodeURIComponent(state)
+						+ "&scope="+encodeURIComponent(config.requested_scopes)
+						+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
+						+ "&nonce="+"1234";
+				// Redirect to the authorization server
+				window.location = url;
+				console.log(url)
+			};
+					
+					function uuidv4() {
+						return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+							var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+							 return v.toString(16);
+							
+						});
+					}
+					
+		</script>
+		
+<!--<script>
 // Configure your application and authorization server details
+
 var config = {
 		client_id: "0oa1untu9pC54ZXzK357",
 		redirect_uri: "https://adamacrown1.github.io/webapp/",
-		authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
-		token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
-		requested_scopes: "openid profile groups okta.users.read"
+		authorization_endpoint: "https://dev-602311.okta.com/oauth2/default/v1/authorize",
+		token_endpoint: "https://dev-602311.okta.com/oauth2/default/v1/token",
+		requested_scopes: "openid profile groups"
 };
 </script>
 
@@ -91,11 +137,11 @@ document.getElementById("start").addEventListener("click", async function(e){
 				+ "&code_challenge="+encodeURIComponent(code_challenge)
 				+ "&code_challenge_method=S256"
 				;
-	
-	console.log(url)
 		// Redirect to the authorization server
 		window.location = url;
 });
+-->
+<script>
 //////////////////////////////////////////////////////////////////////
 // OAUTH REDIRECT HANDLING
 // Handle the redirect back from the authorization server and
@@ -126,24 +172,20 @@ if(q.code) {
 						// Here we just display it in the browser.
 						document.getElementById("access_token").innerText = body.access_token;
 						access_token_parse = body.access_token
-						var access_token_parse1 = body.access_token
-						localStorage.setItem("access_token", access_token_parse1);
 						document.getElementById("start").classList = "hidden";
-						//document.getElementById("token").classList = "";
+						document.getElementById("token").classList = "";
 						
 						document.getElementById("id_token").innerText = body.id_token;
 						id_token_parse = body.id_token
-						var id_token_parse1 = body.id_token
-						localStorage.setItem("id_token", id_token_parse1);
 						document.getElementById("start").classList = "hidden";
-						//document.getElementById("idToken").classList = "";
+						document.getElementById("idToken").classList = "";
 						// Replace the history entry to remove the auth code from the browser address bar
 						window.history.replaceState({}, null, "/webapp");
 				}, function(request, error) {
 						// This could be an error response from the OAuth server, or an error because the 
 						// request failed such as if the OAuth server doesn't allow CORS requests
 						document.getElementById("error_details").innerText = error.error+"\n\n"+error.error_description;
-						// document.getElementById("error").classList = "";
+						document.getElementById("error").classList = "";
 				});
 		}
 		// Clean these up since we don't need them anymore
@@ -215,7 +257,6 @@ async function pkceChallengeFromVerifier(v) {
 
 	<script>
  		 
-		
 		function parseIdToken (token) {
 			
 			var token = id_token_parse
@@ -238,36 +279,12 @@ async function pkceChallengeFromVerifier(v) {
 				console.log(obj.groups)
 				// parse and determine groups
 			
-				var objJsonResp
-			var k
-				id = "sfCallCenterAdmins"
-				 var str = jsonPayload; 
-					var n = str.search(id);
-					console.log(n)
-				
-				if (n > 0) {
-					
-					role = "admin"
-					
-					console.log(role)
-					document.getElementById("adminButton").classList = "btn btn-primary"
-					document.getElementById("adminBinary").innerText = role			
-					document.getElementById("adminBinaryField").classList = "";
-					localStorage.setItem("role", role);
-					
-				} else {
-					
-					role = "user"
-					
-					console.log(role)
-					document.getElementById("adminBinary").innerText = role			
-					document.getElementById("adminBinaryField").classList = "";
-					localStorage.setItem("role", role);
-					
-				}
-				
-				
-			};
+		};
+			
+		</script>
+		
+		<script>
+		
 		</script>
 
 <style>
