@@ -11,14 +11,12 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-		<title>Salesforce Manager</title>
+		<title>Salesforce User Manager</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-light bg-light">
 			<span class="navbar-brand mb-0 h1">Salesforce Manager</span>	
-
-				<button type="button" class="btn btn-primary" onclick="launchUrl()">Launch</button>
-				<button type="button" class="btn btn-primary" onclick="parseIdToken()">Parse Token</button>
+				<button type="button" class="btn btn-primary" onclick="launchUrl()">Login</button>
 				<button id="adminButton" type="button" class="btn btn-primary" onclick="launchAdmin()">Admin</button>
 			
 		</nav>
@@ -59,7 +57,7 @@
 			}
 			
 			
-			function launchUrl() {
+			
 
 			var state = uuidv4();
 			var nonce = uuidv4();
@@ -72,7 +70,7 @@
 					redirect_uri: "https://adamacrown1.github.io/webapp/",
 					authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
 					token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
-					requested_scopes: "openid profile",
+					requested_scopes: "openid profile id",
 			
 			};
 		
@@ -94,53 +92,10 @@
 							 return v.toString(16);
 							
 						});
-					}
+				
 					
 		</script>
 		
-<!--<script>
-// Configure your application and authorization server details
-
-var config = {
-		client_id: "0oa1untu9pC54ZXzK357",
-		redirect_uri: "https://adamacrown1.github.io/webapp/",
-		authorization_endpoint: "https://dev-602311.okta.com/oauth2/default/v1/authorize",
-		token_endpoint: "https://dev-602311.okta.com/oauth2/default/v1/token",
-		requested_scopes: "openid profile groups"
-};
-</script>
-
-
-
-<script>
-//////////////////////////////////////////////////////////////////////
-// OAUTH REQUEST
-// Initiate the PKCE Auth Code flow when the link is clicked
-document.getElementById("start").addEventListener("click", async function(e){
-		e.preventDefault();
-		
-		// Create and store a random "state" value
-		var state = generateRandomString();
-		localStorage.setItem("pkce_state", state);
-		// Create and store a new PKCE code_verifier (the plaintext random secret)
-		var code_verifier = generateRandomString();
-		localStorage.setItem("pkce_code_verifier", code_verifier);
-		// Hash and base64-urlencode the secret to use as the challenge
-		var code_challenge = await pkceChallengeFromVerifier(code_verifier);
-		// Build the authorization URL
-		var url = config.authorization_endpoint 
-				+ "?response_type=code"
-				+ "&client_id="+encodeURIComponent(config.client_id)
-				+ "&state="+encodeURIComponent(state)
-				+ "&scope="+encodeURIComponent(config.requested_scopes)
-				+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
-				+ "&code_challenge="+encodeURIComponent(code_challenge)
-				+ "&code_challenge_method=S256"
-				;
-		// Redirect to the authorization server
-		window.location = url;
-});
--->
 <script>
 //////////////////////////////////////////////////////////////////////
 // OAUTH REDIRECT HANDLING
