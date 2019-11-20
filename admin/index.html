@@ -305,11 +305,10 @@ function launchUrl() {
 		
 		//Get User
 		userId = document.getElementById("oktaId").value
-		getUserApi = baseUrl + "/api/v1/users/" + userId
+		console.log(userId)
 		
 		//Post User Update
 		postUserApi = baseUrl + "/api/v1/users/" + userId
-		
 		
 		//GET Requests via Ajax
 	
@@ -322,20 +321,21 @@ function launchUrl() {
 		
 		}
 		
-		
 		function getListUsersApiCall() {
 			
 			access_token = sessionStorage.getItem("access_token")
 			console.log("GETAPISTART")
 			getAPI(url1, access_token, parseData);
-			
 			}
 		
 		//Get User
 		function getUserApiCall() {
 				
+				getUserApi = baseUrl + "/api/v1/users/" + userId
 				access_token = sessionStorage.getItem("access_token")
+				
 				console.log("GETAPISTART")
+
 				getAPI(getUserApi, access_token, parseUserData)
 				
 		}
