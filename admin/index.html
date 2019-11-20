@@ -16,29 +16,13 @@
 	<body>
 	
 	
-	<button type="button" class="btn btn-primary" onclick="launchUrl()">Launch</button>
-	<button type="button" class="btn btn-primary" onclick="parse()">Parse</button>
 	
-	<!-- LIST USERS ACTIONS -->
-	<button type="button" class="btn btn-primary" onclick="getListUsersApiCall()">Get Users</button>
-	<button type="button" class="btn btn-primary" onclick="getListUsersApiCallRefresh()">Refresh Users</button>
 	
-	<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
-	<button type="button" class="btn btn-primary" onclick="getUserApiCall()">Get User</button>
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">View User</button>
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowCreate" onclick="postUserApiCall()">Update User</button>
-	
-	<!-- PROMOTE USER TO ADMIN ACTION -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowAdmin">Promote to Admin</button>
-
-	
-	<!-- DELETE SPECIFIC USER ACTIONS -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete">[x] Delete User</button>
-
-		<div class="container">
+			<div class="container">
+			<button type="button" class="btn btn-primary" onclick="launchUrl()">Launch</button>
+				<button type="button" class="btn btn-primary" onclick="parse()">Parse</button>
 		
-		
-			<h3>Existing Users <span class="badge badge-secondary"></span></h3>
+		<h3> <span class="badge badge-secondary"></span></h3>
 			
 			<div class="row" id="response"></div>
 			
@@ -119,6 +103,42 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+
+	<!-- LIST USERS ACTIONS -->
+		<button type="button" class="btn btn-primary" onclick="getListUsersApiCall()">Get Users</button>
+		<button type="button" class="btn btn-primary" onclick="getListUsersApiCallRefresh()">Refresh Users</button>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+	</div>
+	
+	<div class="container">	
+		
+		<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
+		<button type="button" class="btn btn-primary" onclick="getUserApiCall()">Get User</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">View User</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowCreate" onclick="postUserApiCall()">Update User</button>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		</div>
+		
+		<div class="container">
+		<!-- PROMOTE USER TO ADMIN ACTION -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowAdmin">Promote to Admin</button>
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		</div>
+
+		<div class="container">
+		<!-- DELETE SPECIFIC USER ACTIONS -->
+	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete">[x] Delete User</button>
+		<h3> <span class="badge badge-secondary"></span></h3>
+
 		</div>
 	
 	<script>
