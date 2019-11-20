@@ -137,14 +137,12 @@
 		
 		<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
 		<button type="button" class="btn btn-primary" onclick="getUserApiCall()">Get User</button>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">View User</button>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowCreate" onclick="postUserApiCall()">Update User</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">Update User</button>
 	
-		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
 		<div class="card">
-			<div id="response" class="card-body">
+			<div id="getUserPayload" class="card-body">
 			</div>
 		</div>
 		
@@ -295,7 +293,12 @@ function launchUrl(x, callback) {
 				
 				access_token = sessionStorage.getItem("access_token")
 				console.log("GETAPISTART")
-				getAPI(getUserApi, access_token, parseUserData);
+				getAPI(getUserApi, access_token, parseUserData, function () { 
+					
+					document.getElementById("getUserPayload").value += userId + " | " + userFirstName + " | " + userLastName + "<br>";
+					console.log("this")
+					
+					 });
 				
 		}
 		
