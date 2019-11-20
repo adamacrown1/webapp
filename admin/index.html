@@ -163,9 +163,11 @@
 	
 		<h3> <span class="badge badge-secondary"></span></h3>
 	
-		<div class="card">
-			<div id="getUserPayload1" class="card-body">
+		<div class="input-group flex-nowrap">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">Enter ID</span>
 			</div>
+			<input type="text" id="oktaId" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -296,12 +298,14 @@ function launchUrl() {
 		
 		//Params
 		baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
-		userId = "00u1th4505zNOOhC2357"
+		//userId = "00u1th4505zNOOhC2357"
+		console.log(userId)
 		//List Users APIs
 		listUsers = baseUrl + "/api/v1/users/?limit=200"
 		url1 = listUsers
 		
 		//Get User
+		userId = document.getElementById("oktaId").value
 		getUserApi = baseUrl + "/api/v1/users/" + userId
 		
 		//Post User Update
