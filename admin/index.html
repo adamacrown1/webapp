@@ -148,7 +148,11 @@
 	
 	<script>
 	
-	function launchUrl() {
+	console.log(sessionStorage.getItem("access_token"))
+	tokenCheck = sessionStorage.getItem("access_token")
+
+	if (tokenCheck === null) {
+
 	var state = uuidv4();
 	var nonce = uuidv4();
 	
