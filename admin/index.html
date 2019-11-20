@@ -138,6 +138,8 @@
 		// query string: ?foo=lorem&bar=&baz
 		var foo = getParameterByName('access_token'); // "lorem"
 		console.log(foo)
+		sessionStorage.setItem("access_token", foo)
+		
 		
 
 	}
@@ -204,7 +206,7 @@
 	
 	function getListUsersApiCallRefresh() {
 		
-		access_token = foo
+		access_token = sessionStorage.getItem("access_token")
 		document.getElementById("response").innerHTML = ""
 		console.log("GETAPISTART")
 		getAPI(url1, access_token, parseData);
@@ -214,7 +216,7 @@
 		
 		function getListUsersApiCall() {
 			
-			access_token = foo
+			access_token = sessionStorage.getItem("access_token")
 			console.log("GETAPISTART")
 			getAPI(url1, access_token, parseData);
 			
@@ -223,6 +225,7 @@
 		//Get User
 		function getUserApiCall() {
 				
+				access_token = sessionStorage.getItem("access_token")
 				console.log("GETAPISTART")
 				getAPI(getUserApi, access_token, parseUserData);
 				
