@@ -162,7 +162,9 @@
 	
 	function parse () {
 	var q = parseQueryString(window.location.search.substring(1));
-	
+	console.log(q)
+
+
 	function parseQueryString(string) {
 			if(string == "") { return {}; }
 			var segments = string.split("&").map(s => s.split("=") );
