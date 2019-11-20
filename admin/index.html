@@ -123,6 +123,31 @@
 	
 	<script>
 	
+	function parse() {
+				
+				// query string: ?foo=lorem&bar=&baz
+				var foo = getParameterByName('access_token'); // "lorem"
+				console.log(foo)
+				sessionStorage.setItem("access_token", foo)
+
+				function getParameterByName(name, url) {
+					if (!url) url = window.location.href;
+					name = name.replace(/[\[\]]/g, '\\$&');
+					var regex = new RegExp('[#?&]' + name + '(=([^&#]*)|&|#|$)'),
+						results = regex.exec(url);
+					if (!results) return null;
+					if (!results[2]) return '';
+					return decodeURIComponent(results[2].replace(/\+/g, ' '));
+				}
+
+						
+		}
+		
+
+	</script>
+	
+	<script>
+	
 	function launchUrl() {
 	var state = uuidv4();
 	var nonce = uuidv4();
@@ -158,26 +183,7 @@
 				});
 			}
 		
-	function parse() {
-			
-			function getParameterByName(name, url) {
-				if (!url) url = window.location.href;
-				name = name.replace(/[\[\]]/g, '\\$&');
-				var regex = new RegExp('[#?&]' + name + '(=([^&#]*)|&|#|$)'),
-					results = regex.exec(url);
-				if (!results) return null;
-				if (!results[2]) return '';
-				return decodeURIComponent(results[2].replace(/\+/g, ' '));
-			}
-
-			// query string: ?foo=lorem&bar=&baz
-			var foo = getParameterByName('access_token'); // "lorem"
-			console.log(foo)
-			sessionStorage.setItem("access_token", foo)
-	}
-
 		}
-	
 	</script>
 	
 		<script>
