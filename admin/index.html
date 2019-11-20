@@ -293,12 +293,11 @@ function launchUrl(x, callback) {
 				
 				access_token = sessionStorage.getItem("access_token")
 				console.log("GETAPISTART")
-				getAPI(getUserApi, access_token, parseUserData, function () { 
-					
-					document.getElementById("getUserPayload").value += userId + " | " + userFirstName + " | " + userLastName + "<br>";
-					console.log("this")
-					
-					 });
+				getAPI(getUserApi, access_token, parseUserData) 
+				
+				document.getElementById("getUserPayload").value += userId + " | " + userFirstName + " | " + userLastName + "<br>";
+				console.log("this")
+				
 				
 		}
 		
