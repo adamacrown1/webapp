@@ -376,6 +376,10 @@ function launchUrl() {
 		
 		}
 		
+		function test () {
+			console.log("test end")
+		}
+		
 		function postAdminApiCall() {
 				
 				console.log("GETAPISTART")
@@ -394,7 +398,7 @@ function launchUrl() {
 				
 				access_token = sessionStorage.getItem("access_token")
 
-				postAPI(postUserApiRoles, access_token, postPayload, userId);
+				postAPI(postUserApiRoles, access_token, postPayload, test);
 			
 		
 		
