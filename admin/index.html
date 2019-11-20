@@ -408,6 +408,7 @@ function launchUrl() {
 				console.log(userLastName)
 				
 				x = document.getElementById("getUserPayload").value += userId + " | " + userFirstName + " | " + userLastName;
+				
 				console.log(x)
 				
 				document.getElementById("firstName").value = userFirstName;
@@ -433,7 +434,8 @@ function launchUrl() {
 		console.log(userFirstName)
 		console.log(userLastName)
 		
-		document.getElementById("response").innerHTML += userId + " | " + userFirstName + " | " + userLastName + "<br>"
+		y = document.getElementById("response").innerHTML += userId + " | " + userFirstName + " | " + userLastName + "<br>"
+		console.log(y)
 		}
 		
 		//}
