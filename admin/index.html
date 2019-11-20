@@ -138,6 +138,7 @@
 		// query string: ?foo=lorem&bar=&baz
 		var foo = getParameterByName('access_token'); // "lorem"
 		console.log(foo)
+		
 
 	}
 	
@@ -203,17 +204,19 @@
 	
 	function getListUsersApiCallRefresh() {
 		
+		access_token = foo
 		document.getElementById("response").innerHTML = ""
 		console.log("GETAPISTART")
-		getAPI(url1, parseData);
+		getAPI(url1, access_token, parseData);
 		
 		}
 		
 		
 		function getListUsersApiCall() {
 			
+			access_token = foo
 			console.log("GETAPISTART")
-			getAPI(url1, parseData);
+			getAPI(url1, access_token parseData);
 			
 			}
 		
@@ -221,7 +224,7 @@
 		function getUserApiCall() {
 				
 				console.log("GETAPISTART")
-				getAPI(getUserApi, parseUserData);
+				getAPI(getUserApi, access_token, parseUserData);
 				
 		}
 		
@@ -321,14 +324,14 @@
 	}
 	
 
-	function getAPI(url1, callback) {
+	function getAPI(url1, access_token, callback) {
 	
 		$.ajax({
 
 			url : url1,
 			type : 'GET',
 			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Authorization', 'SSWS 00rO6pElSFGHHP6Jvot7k7xFNVYiIgRtzIXCH1Fb-X'),
+				xhr.setRequestHeader('Authorization', 'Bearer ' + access_token),
 					xhr.setRequestHeader('Accept', 'application/json'),
 					xhr.setRequestHeader('Content-Type', 'application/json');
 			},
