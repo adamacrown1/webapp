@@ -252,7 +252,7 @@
 	
 	console.log(sessionStorage.getItem("access_token"))
 		
-function launchUrl(x, callback) {
+function launchUrl() {
 	var state = uuidv4();
 	var nonce = uuidv4();
 	
@@ -278,7 +278,6 @@ function launchUrl(x, callback) {
 		// Redirect to the authorization server
 		window.location = url;
 		console.log(url);
-		callback();
 			
 			function uuidv4() {
 				return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -334,11 +333,7 @@ function launchUrl(x, callback) {
 				
 				access_token = sessionStorage.getItem("access_token")
 				console.log("GETAPISTART")
-				getAPI(getUserApi, access_token, parseUserData) 
-				
-				document.getElementById("getUserPayload").value += userId + " | " + userFirstName + " | " + userLastName + "<br>";
-				console.log("this")
-				
+				getAPI(getUserApi, access_token, parseUserData)
 				
 		}
 		
@@ -401,6 +396,7 @@ function launchUrl(x, callback) {
 				
 				console.log("parseUserData")
 				console.log(response)
+				
 				userId = response.id
 				userLastName = response.profile.lastName
 				userFirstName = response.profile.firstName
@@ -410,6 +406,8 @@ function launchUrl(x, callback) {
 				console.log(userId)	
 				console.log(userFirstName)
 				console.log(userLastName)
+				
+				document.getElementById("getUserPayload").value += userId + " | " + userFirstName + " | " + userLastName;
 				
 				document.getElementById("firstName").value = userFirstName;
 				document.getElementById("lastName").value = userLastName;
