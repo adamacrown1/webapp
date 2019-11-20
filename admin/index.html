@@ -346,10 +346,10 @@ function launchUrl() {
 		//Post User
 		function postUserApiCall() {
 				
-				userId = document.getElementById("userIdAdmin").value;
+				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+				userId = document.getElementById("oktaId").value;
 				postUserApi = baseUrl + "/api/v1/users/" + userId
 				console.log("GETAPISTART")
-				
 				
 				access_token = sessionStorage.getItem("access_token")
 				
@@ -364,7 +364,6 @@ function launchUrl() {
 							
 				postPayload = "{ " + '"profile"' + ': { "firstName": "' + firstName + '", "lastName": "' + lastName + '", "email": "' + email + '", "mobilePhone": "' + mobile + '" } }'
 				console.log(postPayload)
-						
 						
 					//	"mobilePhone": "123-456-7890"
 					//}
