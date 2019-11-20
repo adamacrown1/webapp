@@ -237,6 +237,7 @@
 				
 				console.log("GETAPISTART")
 				
+				
 				access_token = sessionStorage.getItem("access_token")
 				
 				firstName = document.getElementById("firstName").value;
@@ -357,7 +358,7 @@
 		
 }
 
-function postAPI(url1, postPayload, callback) {
+function postAPI(url1, access_token, postPayload, callback) {
 	
 		$.ajax({
 
@@ -365,7 +366,7 @@ function postAPI(url1, postPayload, callback) {
 			type : 'POST',
 			data : postPayload,
 			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Authorization', 'SSWS 00rO6pElSFGHHP6Jvot7k7xFNVYiIgRtzIXCH1Fb-X'),
+				xhr.setRequestHeader('Authorization', 'Bearer ' + access_token),
 					xhr.setRequestHeader('Accept', 'application/json'),
 					xhr.setRequestHeader('Content-Type', 'application/json');
 			},
