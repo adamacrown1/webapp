@@ -17,6 +17,7 @@
 	
 	
 	<button type="button" class="btn btn-primary" onclick="launchUrl()">Launch</button>
+	<button type="button" class="btn btn-primary" onclick="parse()">Parse</button>
 	
 	<!-- LIST USERS ACTIONS -->
 	<button type="button" class="btn btn-primary" onclick="getListUsersApiCall()">Get Users</button>
@@ -158,6 +159,19 @@
 					
 				});
 			}
+	
+	function parse () {
+	var q = parseQueryString(window.location.search.substring(1));
+	
+	function parseQueryString(string) {
+			if(string == "") { return {}; }
+			var segments = string.split("&").map(s => s.split("=") );
+			var queryString = {};
+			segments.forEach(s => queryString[s[0]] = s[1]);
+			console.log(queryString)
+			return queryString;
+		}
+	}
 	
 	</script>
 	
