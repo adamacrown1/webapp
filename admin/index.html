@@ -382,6 +382,7 @@ function launchUrl() {
 				
 				userId = document.getElementById("userIdAdmin").value;
 				desiredAdminRole = document.getElementById("desiredAdminRole").value;
+				
 				console.log(userId + desiredAdminRole)
 				console.log('{ "type": "' + desiredAdminRole + '" }')
 			
@@ -391,7 +392,7 @@ function launchUrl() {
 				postUserApiRoles = baseUrl + "/api/v1/users/" + userId + "/roles"
 				console.log(postUserApiRoles)
 
-				postAPI(postUserApiRoles, postPayload, log);
+				postAPI(postUserApiRoles, postPayload);
 			
 		
 		
