@@ -391,8 +391,10 @@ function launchUrl() {
 
 				postUserApiRoles = baseUrl + "/api/v1/users/" + userId + "/roles"
 				console.log(postUserApiRoles)
+				
+				access_token = sessionStorage.getItem("access_token")
 
-				postAPI(postUserApiRoles, postPayload);
+				postAPI(postUserApiRoles, access_token, postPayload, parseUserData);
 			
 		
 		
