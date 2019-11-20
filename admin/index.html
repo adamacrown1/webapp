@@ -304,11 +304,9 @@ function launchUrl() {
 		url1 = listUsers
 		
 		//Get User
-		userId = document.getElementById("oktaId").value
-		console.log(userId)
 		
 		//Post User Update
-		postUserApi = baseUrl + "/api/v1/users/" + userId
+		
 		
 		//GET Requests via Ajax
 	
@@ -331,7 +329,12 @@ function launchUrl() {
 		//Get User
 		function getUserApiCall() {
 				
+				userId = document.getElementById("oktaId").value
+				console.log(userId)
+				
 				getUserApi = baseUrl + "/api/v1/users/" + userId
+				console.log(getUserApi)
+				
 				access_token = sessionStorage.getItem("access_token")
 				
 				console.log("GETAPISTART")
@@ -343,6 +346,8 @@ function launchUrl() {
 		//Post User
 		function postUserApiCall() {
 				
+				userId = document.getElementById("userIdAdmin").value;
+				postUserApi = baseUrl + "/api/v1/users/" + userId
 				console.log("GETAPISTART")
 				
 				
