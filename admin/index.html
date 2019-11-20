@@ -149,14 +149,6 @@
 	<script>
 	
 	console.log(sessionStorage.getItem("access_token"))
-	tokenCheck = sessionStorage.getItem("access_token")
-
-	if (tokenCheck === null) {
-		
-		launchUrl();
-			
-		}
-		
 		
 function launchUrl(x, callback) {
 	var state = uuidv4();
