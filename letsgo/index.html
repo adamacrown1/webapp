@@ -1,52 +1,130 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		
-	<script>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
-	launchUrl();
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	
-	function launchUrl() {
-		var state = uuidv4();
-		var nonce = uuidv4();
-		
-		console.log(state)
-		console.log(nonce)
-		
-		var config = {
-				client_id: "0oa1untu9pC54ZXzK357",
-				redirect_uri: "https://adamacrown1.github.io/webapp/",
-				authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
-				token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
-				requested_scopes: "openid profile okta.users.read okta.users.manage okta.roles.manage okta.roles.read okta.groups.read okta.groups.manage",
-		
-		};
+</head>
 
-		var url = config.authorization_endpoint 
-					+ "?response_type=token"
-					+ "&client_id="+encodeURIComponent(config.client_id)
-					+ "&state="+encodeURIComponent(state)
-					+ "&scope="+encodeURIComponent(config.requested_scopes)
-					+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
-					+ "&nonce="+"1234";
-			// Redirect to the authorization server
-			window.location = url;
-			console.log(url);
-				
-				function uuidv4() {
-					return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-						var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-						 return v.toString(16);
-						
-					});
-				}
-			
-			}
-	    </script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<style>
+
+.form-control {
+	width: 100px;
+}
+
 	
-	</head>
-	<body>
-	</body>
-</html>
+</style>
+
+<nav class="navbar navbar-light bg-light">
+	<div>
+		<div class="row">
+						<button id="patientButton" type="button" class="btn btn-light btn">Unauthenticated Page</a></button>
+						<button id="patientButton" type="button" class="btn btn-light btn"><i class="fas fa-clinic-medical"></i><a href="#patientAnchor"> Completed Calls </a><span class="badge badge-primary badge-success" id="patientCountNo"></span></button>
+												
+						<button id="allergyButton" type="button" class="btn btn-light btn"><i class="fas fa-capsules"></i><a href="#allergyAnchor"> Specialty Referrals </a><span class="badge badge-secondary badge-success" id="allergyCountNo"></span></button>
+						
+							<button id="vitalsButton" type="button" class="btn btn-light btn"><i class="fas fa-calendar-alt"></i><a href="#vitalsAnchor"> Cancelled Appointments </a><span class="badge badge-secondary badge-danger" id="vitalsCountNo"></span></button>
+						
+						<button id="labsButton" type="button" class="btn btn-light btn"><i class="far fa-calendar-alt"></i><a href="#labsAnchor"> Labs Scheduled </a><span class="badge badge-secondary badge-success" id="labsCountNo"></span></button>
+						
+					
+					
+					</div>
+				</div>
+		</div>		
+	</div>
+</div>	
+</nav>
+	<br>
+
+	<h5>Welcome!</h5>
+	<br>
+<button type="button" class="btn btn-primary" onclick="launchUrl()">Admin</button>
+
+<br>
+<div class="col">
+	<a name="patientAnchor"></a>
+	<h6 id="patientTop" hidden><i class="fas fa-user"></i> Patient Demographics</h6>
+	<div class="row" id="patientHeader"></div>
+	
+	<br>
+
+	<a name="encounterAnchor"></a>
+	<h6 id="encounterTop" hidden><i class="fas fa-clinic-medical"></i> Encounters</h6>
+		<div class="row" id="encounterHeader"></div>
+
+	<br>
+
+	<a name="allergyAnchor"></a>
+	<h6 id="allergyTop" hidden><i class="fas fa-capsules"></i> Allergies</h6>
+	<div class="row" id="allergyHeader"></div>
+	
+	<br>
+
+	<a name="conditionAnchor"></a>
+	<h6 id="conditionTop" hidden><i class="fas fa-diagnoses"></i> Conditions</h6>
+	<div class="row" id="conditionHeader"></div>
+	
+	<br>
+
+	<a name="documentAnchor"></a>
+	<h6 id="docTop" hidden><i class="fas fa-laptop-medical"></i> Documents</h6>
+	<div class="row" id="docHeader"></div>
+	
+	<br>
+
+	<a name="medAnchor"></a>
+	<h6 id="medTop" hidden><i class="fas fa-prescription-bottle-alt"></i> Historical Meds</h6>
+	<div class="row" id="medHeader"></div>
+	
+	<br>
+	
+	<a name="procedureAnchor"></a>
+	<h6 id="procedureTop" hidden><i class="far fa-calendar-alt"></i> Procedures</h6>
+	<div class="row" id="procedureHeader"></div>
+</div>
+
+
+
+<script>
+				
+				function launchUrl() {
+					var state = uuidv4();
+					var nonce = uuidv4();
+					
+					console.log(state)
+					console.log(nonce)
+					
+					var config = {
+							client_id: "0oa1untu9pC54ZXzK357",
+							redirect_uri: "https://adamacrown1.github.io/webapp/",
+							authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
+							token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
+							requested_scopes: "openid profile okta.users.read okta.users.manage okta.roles.manage okta.roles.read okta.groups.read okta.groups.manage",
+					
+					};
+					var url = config.authorization_endpoint 
+								+ "?response_type=token"
+								+ "&client_id="+encodeURIComponent(config.client_id)
+								+ "&state="+encodeURIComponent(state)
+								+ "&scope="+encodeURIComponent(config.requested_scopes)
+								+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
+								+ "&nonce="+"1234";
+						// Redirect to the authorization server
+						window.location = url;
+						console.log(url);
+							
+							function uuidv4() {
+								return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+									var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+									 return v.toString(16);
+									
+								});
+							}
+						
+						}
+				    </script>	
