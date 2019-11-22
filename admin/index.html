@@ -356,26 +356,22 @@ function launchUrl() {
 				
 				console.log(postUserApi)
 							
-							
 				postPayload = "{ " + '"profile"' + ': { "firstName": "' + firstName + '", "lastName": "' + lastName + '", "email": "' + email + '", "mobilePhone": "' + mobile + '" } }'
 				console.log(postPayload)
 				
-				method = "POST"
+				var method = "POST"
 						
 					//	"mobilePhone": "123-456-7890"
 					//}
 			//	}"			
 							
-		
 			postAPI(postUserApi, method, access_token, postPayload, parseUserData);
-			
-		
 		
 		}
 		
 		//ADMIN - DELETE
 		
-		function postUserApiCall() {
+		function postUserApiDeleteCall() {
 				
 				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
 				userId = document.getElementById("oktaId").value;
