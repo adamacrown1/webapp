@@ -1,283 +1,766 @@
+<!DOCTYPE html>
 <html>
-<title>Salesforce Call Center Manager</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 
-<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-		<title>Salesforce User Manager</title>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+		
+		</script>
+		
 	</head>
 	<body>
-		<nav class="navbar navbar-light bg-light">
-			<span class="navbar-brand mb-0 h1">Salesforce Manager</span>	
-				<button type="button" class="btn btn-primary" onclick="launchUrl()">Login</button>
-				<button id="adminButton" type="button" class="btn btn-primary" onclick="launchAdmin()">Admin</button>
+	
+	
+	
+	
+			<div class="container">
 			
+			<h3> <span class="badge badge-secondary"></span></h3>
+
+			<nav id="navbar-example2" class="navbar navbar-light bg-light">
+			 <a class="navbar-brand" href="#">Launch</a>
+			</nav>
+			
+			<h3> <span class="badge badge-secondary"></span></h3>
+
+			
+			<button type="button" class="btn btn-primary" onclick="launchUrl()">Launch</button>
+				<button type="button" class="btn btn-primary" onclick="parse()">Parse</button>
+		
+				<h3> <span class="badge badge-secondary"></span></h3>
+		
+				<div class="card">
+					<div id="access_token" class="card-body">
+					</div>
+				</div>
+		
+				<h3> <span class="badge badge-secondary"></span></h3>
+
+			
+			<div class="modal" id="modalWindowUpdate" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Update User Information</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div id="modalBody" class="modal-body">
+							<div class="input-group flex-nowrap">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="addon-wrapping">First Name</span>
+								</div>
+								<input type="text" id="firstName" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+							</div>
+							<div class="input-group flex-nowrap">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="addon-wrapping">Last Name</span>
+								</div>
+								<input type="text" id="lastName" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+							</div>
+							<div class="input-group flex-nowrap">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="addon-wrapping">Phone</span>
+								</div>
+								<input type="text" id="mobilePhone" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+							</div>
+							<div class="input-group flex-nowrap">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="addon-wrapping">Email</span>
+								</div>
+								<input type="text" id="email" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+							</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" onclick="postUserApiCall()">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</div>	
+		
+		<!-- Modal Window for Group Add -->
+		
+		<div class="modal" id="modalWindowGroupAdmin" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Promote to Group</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					<div class="input-group flex-nowrap">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping">User ID</span>
+						</div>
+						<input type="text" id="userIdGroup" class="form-control" placeholder="Okta ID" aria-label="OktaId" aria-describedby="addon-wrapping">
+					</div>
+					
+					<div class="input-group flex-nowrap">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping">Group ID</span>
+						</div>
+						<input type="text" id="desiredGroupId" class="form-control" placeholder="Group ID" aria-label="Role" aria-describedby="addon-wrapping">
+					</div>
+					
+					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="postUserGroupsApiCall()">Save changes</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		
+		<!-- Modal Window for Admin -->
+		
+		<div class="modal" id="modalWindowAdmin" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Promote to Admin</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					<div class="input-group flex-nowrap">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping">User ID</span>
+						</div>
+						<input type="text" id="userIdAdmin" class="form-control" placeholder="Okta ID" aria-label="OktaId" aria-describedby="addon-wrapping">
+					</div>
+					
+					<div class="input-group flex-nowrap">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping">Admin Role</span>
+						</div>
+						<input type="text" id="desiredAdminRole" class="form-control" placeholder="Role" aria-label="Role" aria-describedby="addon-wrapping">
+					</div>
+					
+					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="postAdminApiCall()">Save changes</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+	<h3> <span class="badge badge-secondary"></span></h3>
+
+	<nav id="navbar-example2" class="navbar navbar-light bg-light">
+	 <a class="navbar-brand" href="#">Get Users</a>
+	</nav>
+	<h3> <span class="badge badge-secondary"></span></h3>
+
+	
+	<!-- LIST USERS ACTIONS -->
+		<button type="button" class="btn btn-primary" onclick="getListUsersApiCall()" disabled>Get Users</button>
+		<button type="button" class="btn btn-primary" onclick="getListUsersApiCallRefresh()">Refresh Users</button>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+		
+		<div class="card">
+			<div id="response" class="card-body">
+			</div>
+		</div>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+
+	</div>
+	
+	<div class="container">	
+	
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		<nav id="navbar-example2" class="navbar navbar-light bg-light">
+			 <a class="navbar-brand" href="#">Get User</a>
+		</nav>
+			<h3> <span class="badge badge-secondary"></span></h3>
+
+		
+		<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
+		<button type="button" class="btn btn-primary" onclick="getUserApiCall()">Get User</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">Update User</button>
+	
+		<h3> <span class="badge badge-secondary"></span></h3>
+	
+		<div class="input-group flex-nowrap">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">Enter ID</span>
+			</div>
+			<input type="text" id="oktaId" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		</div>
+		
+		<div class="container">	
+			
+				<h3> <span class="badge badge-secondary"></span></h3>
+
+				<nav id="navbar-example2" class="navbar navbar-light bg-light">
+					 <a class="navbar-brand" href="#">Get User Groups</a>
+				</nav>
+					<h3> <span class="badge badge-secondary"></span></h3>
+
+				
+				<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
+				<button type="button" class="btn btn-primary" onclick="getUserGroupsApiCall()">Get User Groups</button>
+			
+				<h3> <span class="badge badge-secondary"></span></h3>
+			
+				<div class="input-group flex-nowrap">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="addon-wrapping">Enter ID</span>
+					</div>
+					<input type="text" id="oktaIdGroups" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
+				</div>
+				
+				<h3> <span class="badge badge-secondary"></span></h3>
+				
+				<div class="card">
+					<div id="userGroupsResponse" class="card-body">
+					</div>
+				</div>
+				
+				<h3> <span class="badge badge-secondary"></span></h3>
+
+				</div>
+		
+		
+		<!-- Add to Group -->
+		
+		<div class="container">
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+			<nav id="navbar-example2" class="navbar navbar-light bg-light">
+			 <a class="navbar-brand" href="#">Update Group Membership</a>
+			</nav>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		<!-- PROMOTE USER TO ADMIN ACTION -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowGroupAdmin">Add to Group</button>
+		
+
+		<h3> <span class="badge badge-secondary"></span></h3>
+		
+		</div>
+
+		
+		<!-- Admin Functions --> 
+		<div class="container">
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+			<nav id="navbar-example2" class="navbar navbar-light bg-light">
+			 <a class="navbar-brand" href="#">Promote to Admin</a>
+			</nav>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		<!-- PROMOTE USER TO ADMIN ACTION -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowAdmin">Promote to Admin</button>
+		
+
+		<h3> <span class="badge badge-secondary"></span></h3>
+		
+		</div>
+
+		<div class="container">
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		<nav id="navbar-example2" class="navbar navbar-light bg-light">
+		 <a class="navbar-brand" href="#">Delete User</a>
 		</nav>
 		
-		<div class="full-height">
-				<div class="content">
-					<!--<a href="#" id="start">Sign In</a>-->
-						<div id="token" class="hidden">
-								<h2>Access Token</h2>
-								<div id="access_token" class="code"></div>
-						</div>
-						<div id="idToken" class="hidden">
-								<h2>ID Token</h2>
-								<div id="id_token" class="code"></div>
-						</div>
-						<div id="adminBinaryField" class="hidden">
-								<h2>Admin?</h2>
-								<div id="adminBinary" class="code"></div>
-						</div>
-						<div id="error" class="hidden">
-								<h2>Error</h2>
-								<div id="error_details" class="code"></div>
-						</div>
-				</div>
-		</div>  
-		
-		</body>
-		
-		
-		<script>
-			// Configure your application and authorization server details
+		<h3> <span class="badge badge-secondary"></span></h3>
 
-			function launchUrl() {
-			
-			var state = uuidv4();
-			var nonce = uuidv4();
-			
-			console.log(state)
-			console.log(nonce)
-			
-			var config = {
-					client_id: "0oa1untu9pC54ZXzK357",
-					redirect_uri: "https://adamacrown1.github.io/webapp/",
-					authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
-					token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
-					requested_scopes: "openid profile id",
-			
-			};
+		</div>
+
+		<div class="container">
 		
-			var url = config.authorization_endpoint 
-						+ "?response_type=code"
-						+ "&client_id="+encodeURIComponent(config.client_id)
-						+ "&state="+encodeURIComponent(state)
-						+ "&scope="+encodeURIComponent(config.requested_scopes)
-						+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
-						+ "&nonce="+"1234";
-				// Redirect to the authorization server
-				window.location = url;
-				console.log(url)
-			};
-			}
-					
+		<!-- DELETE SPECIFIC USER ACTIONS -->
+	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete" onclick="postUserApiDeleteCall()">[x] Delete User</button>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+		
+		<div class="input-group flex-nowrap">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">Enter ID</span>
+			</div>
+			<input type="text" id="oktaIdDelete" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		</div>
+		
+		<!-- ACTIVATE SPECIFIC USER ACTIONS -->
+		
+		<div class="container">
+		
+		<nav id="navbar-example2" class="navbar navbar-light bg-light">
+		 <a class="navbar-brand" href="#">Activate User</a>
+		</nav>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		
+	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete2" onclick="postUserApiActivateCall()">[x] Activate User</button>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+		
+		<div class="input-group flex-nowrap">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">Enter ID</span>
+			</div>
+			<input type="text" id="oktaIdActivate" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		</div>
+	
+	<script>
+	
+	function parse() {
+				
+				// query string: ?foo=lorem&bar=&baz
+				var foo = getParameterByName('access_token'); // "lorem"
+				console.log(foo)
+				sessionStorage.setItem("access_token", foo)
+				document.getElementById("access_token").innerHTML = foo
+				
+				var doo = getParameterByName('scope'); // "lorem"
+				console.log(doo)
+				sessionStorage.setItem("scope", doo)
+				//document.getElementById("access_token").innerHTML = foo
+				
+				 var str = doo
+				 var n = str.includes("manage");
+				 console.log(n)
+				
+				if (n === true) {
+					sessionStorage.setItem("role", "admin")
+					$(“#getListUsersApiCall”).removeClass('disabled');
+				}
+
+				function getParameterByName(name, url) {
+					if (!url) url = window.location.href;
+					name = name.replace(/[\[\]]/g, '\\$&');
+					var regex = new RegExp('[#?&]' + name + '(=([^&#]*)|&|#|$)'),
+						results = regex.exec(url);
+					if (!results) return null;
+					if (!results[2]) return '';
+					return decodeURIComponent(results[2].replace(/\+/g, ' '));
+				}
+
+						
+		}
+		
+
+	</script>
+	
+	<script>
+
+
+	console.log(sessionStorage.getItem("access_token"))
+		
+function launchUrl() {
+	var state = uuidv4();
+	var nonce = uuidv4();
+	
+	console.log(state)
+	console.log(nonce)
+	
+	var config = {
+			client_id: "0oa1vk06xoo6xSAE5357",
+			redirect_uri: "https://adamacrown1.github.io/webapp/admin/",
+			authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
+			token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
+			requested_scopes: "openid profile okta.users.read okta.users.manage okta.roles.manage okta.roles.read okta.groups.read okta.groups.manage",
+	
+	};
+
+	var url = config.authorization_endpoint 
+				+ "?response_type=token"
+				+ "&client_id="+encodeURIComponent(config.client_id)
+				+ "&state="+encodeURIComponent(state)
+				+ "&scope="+encodeURIComponent(config.requested_scopes)
+				+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
+				+ "&nonce="+"1234";
+		// Redirect to the authorization server
+		window.location = url;
+		console.log(url);
 			
 			function uuidv4() {
 				return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 					var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
 					 return v.toString(16);
-
-				});
-			
-				function launchAdmin() {
-				
-				window.location = "https://adamacrown1.github.io/webapp/admin/"
-				
-				};
 					
-		</script>
-		
-<script>
-//////////////////////////////////////////////////////////////////////
-// OAUTH REDIRECT HANDLING
-// Handle the redirect back from the authorization server and
-// get an access token from the token endpoint
-var q = parseQueryString(window.location.search.substring(1));
-// Check if the server returned an error string
-if(q.error) {
-		//alert("Error returned from authorization server: "+q.error);
-		window.location = "https://google.com"
-	//	document.getElementById("error_details").innerText = q.error+"\n\n"+q.error_description;
-	//	document.getElementById("error").classList = "";
-}
-// If the server returned an authorization code, attempt to exchange it for an access token
-if(q.code) {
-		// Verify state matches what we set at the beginning
-		if(localStorage.getItem("pkce_state") != q.state) {
-				alert("Invalid state");
-		} else {
-				// Exchange the authorization code for an access token
-				sendPostRequest(config.token_endpoint, {
-						grant_type: "authorization_code",
-						code: q.code,
-						client_id: config.client_id,
-						redirect_uri: config.redirect_uri,
-						code_verifier: localStorage.getItem("pkce_code_verifier")
-				}, function(request, body) {
-						// Initialize your application now that you have an access token.
-						// Here we just display it in the browser.
-						document.getElementById("access_token").innerText = body.access_token;
-						access_token_parse = body.access_token
-						document.getElementById("start").classList = "hidden";
-						document.getElementById("token").classList = "";
-						
-						document.getElementById("id_token").innerText = body.id_token;
-						id_token_parse = body.id_token
-						document.getElementById("start").classList = "hidden";
-						document.getElementById("idToken").classList = "";
-						// Replace the history entry to remove the auth code from the browser address bar
-						window.history.replaceState({}, null, "/webapp");
-				}, function(request, error) {
-						// This could be an error response from the OAuth server, or an error because the 
-						// request failed such as if the OAuth server doesn't allow CORS requests
-						document.getElementById("error_details").innerText = error.error+"\n\n"+error.error_description;
-						document.getElementById("error").classList = "";
 				});
-		}
-		// Clean these up since we don't need them anymore
-		localStorage.removeItem("pkce_state");
-		localStorage.removeItem("pkce_code_verifier");
-}
-//////////////////////////////////////////////////////////////////////
-// GENERAL HELPER FUNCTIONS
-// Make a POST request and parse the response as JSON
-function sendPostRequest(url, params, success, error) {
-		var request = new XMLHttpRequest();
-		request.open('POST', url, true);
-		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-		request.onload = function() {
-				var body = {};
-				try {
-						body = JSON.parse(request.response);
-				} catch(e) {}
-				if(request.status == 200) {
-						success(request, body);
-				} else {
-						error(request, body);
-				}
-		}
-		request.onerror = function() {
-				error(request, {});
-		}
-		var body = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-		request.send(body);
-}
-// Parse a query string into an object
-function parseQueryString(string) {
-		if(string == "") { return {}; }
-		var segments = string.split("&").map(s => s.split("=") );
-		var queryString = {};
-		segments.forEach(s => queryString[s[0]] = s[1]);
-		return queryString;
-}
-//////////////////////////////////////////////////////////////////////
-// PKCE HELPER FUNCTIONS
-// Generate a secure random string using the browser crypto functions
-function generateRandomString() {
-		var array = new Uint32Array(28);
-		window.crypto.getRandomValues(array);
-		return Array.from(array, dec => ('0' + dec.toString(16)).substr(-2)).join('');
-}
-// Calculate the SHA256 hash of the input text. 
-// Returns a promise that resolves to an ArrayBuffer
-function sha256(plain) {
-		const encoder = new TextEncoder();
-		const data = encoder.encode(plain);
-		return window.crypto.subtle.digest('SHA-256', data);
-}
-// Base64-urlencodes the input string
-function base64urlencode(str) {
-		// Convert the ArrayBuffer to string using Uint8 array to conver to what btoa accepts.
-		// btoa accepts chars only within ascii 0-255 and base64 encodes them.
-		// Then convert the base64 encoded to base64url encoded
-		//   (replace + with -, replace / with _, trim trailing =)
-		return btoa(String.fromCharCode.apply(null, new Uint8Array(str)))
-				.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
-// Return the base64-urlencoded sha256 hash for the PKCE challenge
-async function pkceChallengeFromVerifier(v) {
-		hashed = await sha256(v);
-		return base64urlencode(hashed);
-}
-</script>
-
-	<script>
- 		 
-		function parseIdToken (token) {
-			
-			var token = id_token_parse
-			console.log(token)
-			
-		//"eyJraWQiOiJ3em9YZW9KTXBpRjd4ODdrLVozamVUcHI0N2RwTjZjb2dyejBXSlFoM2pBIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIwMHUxdGg0NTA1ek5PT2hDMjM1NyIsIm5hbWUiOiJBZGFtIENyb3duIiwidmVyIjoxLCJpc3MiOiJodHRwczovL2Rldi02MDIzMTEub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiIwb2ExdW50dTlwQzU0Wlh6SzM1NyIsImlhdCI6MTU3NDAxNTI2MywiZXhwIjoxNTc0MDE4ODYzLCJqdGkiOiJJRC5yeUo5TVRscW9mVnh6ZjZWMi1KTjVndXduTVBXNTFvS3lNM3VhODZUUXdZIiwiYW1yIjpbInB3ZCJdLCJpZHAiOiIwMG8xdGg0NHd4eFlqWW15YTM1NyIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkYW1hY3Jvd25AaWNsb3VkLmNvbSIsImF1dGhfdGltZSI6MTU3NDAxNTI2MSwiYXRfaGFzaCI6IlpqS3BuSzFHNHh6QzA2cVF3djdUdHciLCJncm91cHMiOlsiRXZlcnlvbmUiLCJzZkNhbGxDZW50ZXJBZG1pbnMiXX0.kPx8Z8Xn-w6dGZMCfe5qtW8xxpfnRiKu8kBOwrpb-4wchrL6wCmpMCS1KD6Nbw4nm5qmKqOwYm1_GlpNrTuJAnfh5kmpvVTf2bARbGeS3lwlDcIsxe3El6toSan55qLXY469sZrfjqMerdWrK4_etmuPnbOZk2obySdlEJriYqzBuDg3ZtCxBXsi4gviOGqFIHE--zrz5wvigzStK4w2AUb4S07JWWGk1eKGFBZHhdgXofTq0oFQ-5de_UuMoiLIyCJ-eRnHJqJIeAxlFLhmcQ61IyfykN2lFjNzizd70ltLMOTeWoB6MALYw_0XPA5bEVzTHO6xh4PlUypJRMlL5A"
-				
-				console.log("token " + token)
-				
-				var base64Url = token.split('.')[1];
-				var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-				var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-				}).join(''));
-				console.log("parsed " + jsonPayload)
-				const obj = JSON.parse(jsonPayload);
-				// show jsonPayload parsed into JSON objects
-				console.log(obj)
-				// grab groups from object
-				console.log(obj.groups)
-				// parse and determine groups
-			
-		};
-			
-		</script>
+			}
 		
+		}
+	
+	</script>
+	
 		<script>
 		
-		</script>
+		//Params
+		baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+		//userId = "00u1th4505zNOOhC2357"
+		//List Users APIs
+		listUsers = baseUrl + "/api/v1/users/?limit=200"
+		url1 = listUsers
+		
+	
+	
 
-<style>
-body {
-	padding: 0;
-	margin: 0;
-	min-height: 100vh;
-	font-family: arial, sans-serif;
-}
-@media(max-width: 400px) {
-	body {
-		padding: 10px;
+	function getListUsersApiCallRefresh() {
+		
+		access_token = sessionStorage.getItem("access_token")
+		document.getElementById("response").innerHTML = ""
+		console.log("GETAPISTART")
+		getAPI(url1, access_token, parseData);
+		
+		}
+		
+		function getListUsersApiCall() {
+			
+			access_token = sessionStorage.getItem("access_token")
+			console.log("GETAPISTART")
+			getAPI(url1, access_token, parseData);
+			}
+		
+		//Get User
+		function getUserApiCall() {
+				
+				userId = document.getElementById("oktaId").value
+				console.log(userId)
+				
+				getUserApi = baseUrl + "/api/v1/users/" + userId
+				console.log(getUserApi)
+				
+				access_token = sessionStorage.getItem("access_token")
+				
+				console.log("GETAPISTART")
+
+				getAPI(getUserApi, access_token, parseUserData)
+				
+		}
+		
+		// GET USER GROUPS 
+		function getUserGroupsApiCall() {
+				
+				document.getElementById("userGroupsResponse").innerHTML = ""
+						
+				userId = document.getElementById("oktaIdGroups").value
+				console.log(userId)
+				
+				getUserApi = baseUrl + "/api/v1/users/" + userId + "/groups" 
+				console.log(getUserApi)
+				
+				access_token = sessionStorage.getItem("access_token")
+				
+				console.log("GETAPISTART")
+
+				getAPI(getUserApi, access_token, parseUserGroupData)
+				
+		}
+		
+		// Update Groups Call
+		function postUserGroupsApiCall() {
+						
+				groupId = document.getElementById("desiredGroupId").value
+				userId = document.getElementById("userIdGroup").value
+				
+				console.log(groupId)
+				console.log(userId)
+				
+				getGroupsApi = baseUrl + "/api/v1/groups/" + groupId + "/users/" + userId
+				console.log(getGroupsApi)
+				
+				access_token = sessionStorage.getItem("access_token")
+				var method = "PUT"
+				
+				console.log("GETAPISTART")
+
+				//getAPI(getUserApi, access_token, parseUserGroupData)
+				postAPI(getGroupsApi, method, access_token, test, test)
+		} 
+		
+		
+		
+		
+		
+		
+		//Post User
+		function postUserApiCall() {
+				
+				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+				userId = document.getElementById("oktaId").value;
+				postUserApi = baseUrl + "/api/v1/users/" + userId
+				console.log("GETAPISTART")
+				
+				access_token = sessionStorage.getItem("access_token")
+				
+				firstName = document.getElementById("firstName").value;
+				lastName = document.getElementById("lastName").value;
+				mobile = document.getElementById("mobilePhone").value;
+				email = document.getElementById("email").value;
+				console.log(firstName + lastName + mobile + email)
+				
+				console.log(postUserApi)
+							
+				postPayload = "{ " + '"profile"' + ': { "firstName": "' + firstName + '", "lastName": "' + lastName + '", "email": "' + email + '", "mobilePhone": "' + mobile + '" } }'
+				console.log(postPayload)
+				
+				var method = "POST"
+						
+					//	"mobilePhone": "123-456-7890"
+					//}
+			//	}"			
+							
+			postAPI(postUserApi, method, access_token, postPayload, parseUserData);
+		
+		}
+		
+		//ADMIN - DELETE
+		
+		function postUserApiDeleteCall() {
+				
+				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+				userId = document.getElementById("oktaIdDelete").value;
+				postUserApi = baseUrl + "/api/v1/users/" + userId
+				console.log("GETAPISTART")
+				
+				access_token = sessionStorage.getItem("access_token")
+			
+				console.log(postUserApi)
+							
+				postPayload = ""
+				console.log(postPayload)
+				
+				var method = "DELETE"
+						
+					//	"mobilePhone": "123-456-7890"
+					//}
+			//	}"			
+		
+			postAPI(postUserApi, method, access_token, postPayload, test);
+
+		}
+
+		
+		function postUserApiActivateCall() {
+				
+				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+				userId = document.getElementById("oktaIdActivate").value;
+				postUserApi = baseUrl + "/api/v1/users/" + userId + "/lifecycle/activate?sendEmail=true"
+				console.log("GETAPISTART")
+				
+				access_token = sessionStorage.getItem("access_token")
+			
+				console.log(postUserApi)
+							
+				postPayload = ""
+				console.log(postPayload)
+				
+				var method = "POST"
+						
+					//	"mobilePhone": "123-456-7890"
+					//}
+			//	}"			
+		
+			postAPI(postUserApi, method, access_token, postPayload, test);
+
+		}
+		
+		
+	
+		
+		function test () {
+			console.log("test end")
+		}
+		
+		function postAdminApiCall() {
+				
+				console.log("GETAPISTART")
+				
+				userId = document.getElementById("userIdAdmin").value;
+				desiredAdminRole = document.getElementById("desiredAdminRole").value;
+				
+				console.log(userId + desiredAdminRole)
+				console.log('{ "type": "' + desiredAdminRole + '" }')
+			
+				postPayload = '{ "type": "' + desiredAdminRole + '" }'
+				
+
+				postUserApiRoles = baseUrl + "/api/v1/users/" + userId + "/roles"
+				console.log(postUserApiRoles)
+				
+				access_token = sessionStorage.getItem("access_token")
+				var method = "POST"
+
+				postAPI(postUserApiRoles, method, access_token, postPayload, test);
+			
+		
+		
+		}
+		
+		
+		
+		function parseUserData(callback) {
+				
+				console.log("parseUserData")
+				console.log(response)
+				
+				userId = response.id
+				userLastName = response.profile.lastName
+				userFirstName = response.profile.firstName
+				userMobilePhone = response.profile.mobilePhone
+				userEmail = response.profile.email
+				
+				console.log(userId)	
+				console.log(userFirstName)
+				console.log(userLastName)
+				
+				document.getElementById("firstName").value = userFirstName;
+				document.getElementById("lastName").value = userLastName;
+				document.getElementById("mobilePhone").value = userMobilePhone;
+				document.getElementById("email").value = userEmail;
+			
+				}
+				
+				// USER GROUP PARSE
+				function parseUserGroupData(callback) {
+					
+						var step;
+						end = Object.keys(response).length
+						console.log(end)
+							
+						for (step = 0; step < end ; step++) {
+						
+						profileId = response[step].id
+						profileName = response[step].profile.name
+												
+						console.log(profileName)	
+						
+						y = document.getElementById("userGroupsResponse").innerHTML += profileId + " | " + profileName + "<br>"
+						console.log(y)
+						}
+						
+						//}
+					}
+					
+	function parseData(callback) {
+	
+		var step;
+		end = Object.keys(response).length
+		console.log(end)
+			
+		for (step = 0; step < end ; step++) {
+		
+		userId = response[step].id
+		userLastName = response[step].profile.lastName
+		userFirstName = response[step].profile.firstName
+		
+		console.log(userId)	
+		console.log(userFirstName)
+		console.log(userLastName)
+		
+		y = document.getElementById("response").innerHTML += userId + " | " + userFirstName + " | " + userLastName + "<br>"
+		console.log(y)
+		}
+		
+		//}
 	}
-}
-.full-height {
-	min-height: 100vh;
-}
-.flex-center {
-	align-items: center;
-	display: flex;
-	justify-content: center;
-}
-.content {
-	max-width: 400px;
-}
-h2 {
-	text-align: center;
-}
-.code {
-	font-family: "Courier New", "Courier", monospace;
-	width: 100%;
-	padding: 4px;
-	border: 1px #ccc solid;
-	border-radius: 4px;
-	word-break: break-all;
-}
-.hidden {
-	display: none;
-}
-</style>
+	
 
+	function getAPI(url1, access_token, callback) {
+	
+		$.ajax({
+
+			url : url1,
+			type : 'GET',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + access_token),
+					xhr.setRequestHeader('Accept', 'application/json'),
+					xhr.setRequestHeader('Content-Type', 'application/json');
+			},
+
+			success : function(data) {              
+				//alert(JSON.stringify(data));
+				response = data
+				console.log("GETAPIMIDDLE1")
+				console.log(response)
+				callback();
+			},
+			error : function(request,error)
+			{
+				alert("Request: "+JSON.stringify(request));
+			}
+		});
+		
+}
+
+function postAPI(url1, method, access_token, postPayload, callback) {
+	
+		$.ajax({
+
+			url : url1,
+			type : method,
+			data : postPayload,
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + access_token),
+					xhr.setRequestHeader('Accept', 'application/json'),
+					xhr.setRequestHeader('Content-Type', 'application/json');
+			},
+
+			success : function(data) {              
+				//alert(JSON.stringify(data));
+				response = data
+				console.log("GETAPIMIDDLE1")
+				console.log(response)
+				callback();
+			},
+			error : function(request,error)
+			{
+				console.log("Request: "+JSON.stringify(request));
+			}
+		});
+		
+}
+		
+		</script>
+		
+	</body>
 </html>
