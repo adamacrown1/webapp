@@ -188,7 +188,6 @@
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowAdmin">Promote to Admin</button>
 		
 
-		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
 		</div>
@@ -203,6 +202,9 @@
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 
+		</div>
+
+		<div class="container">
 		
 		<!-- DELETE SPECIFIC USER ACTIONS -->
 	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete" onclick="postUserApiDeleteCall()">[x] Delete User</button>
@@ -218,6 +220,31 @@
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 
+		</div>
+		
+		<!-- ACTIVATE SPECIFIC USER ACTIONS -->
+		
+		<div class="container">
+		
+		<nav id="navbar-example2" class="navbar navbar-light bg-light">
+		 <a class="navbar-brand" href="#">Activate User</a>
+		</nav>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		
+	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete2" onclick="postUserApiActivateCall()">[x] Activate User</button>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+		
+		<div class="input-group flex-nowrap">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">Enter ID</span>
+			</div>
+			<input type="text" id="oktaIdActivate" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
 
 		</div>
 	
@@ -398,12 +425,32 @@ function launchUrl() {
 		}
 
 		
+		function postUserApiActivateCall() {
+				
+				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+				userId = document.getElementById("oktaIdActivate").value;
+				postUserApi = baseUrl + "/api/v1/users/" + userId + "/lifecycle/activate?sendEmail=true"
+				console.log("GETAPISTART")
+				
+				access_token = sessionStorage.getItem("access_token")
+			
+				console.log(postUserApi)
+							
+				postPayload = ""
+				console.log(postPayload)
+				
+				var method = "POST"
+						
+					//	"mobilePhone": "123-456-7890"
+					//}
+			//	}"			
+		
+			postAPI(postUserApi, method, access_token, postPayload, test);
+
+		}
 		
 		
-		
-		
-		
-		
+	
 		
 		function test () {
 			console.log("test end")
