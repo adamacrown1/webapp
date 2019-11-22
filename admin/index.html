@@ -406,15 +406,27 @@
 				
 							 //console.log(n)
 				
+				 				
 				
 				if (doo === null) {
 					
-					launchUrl();
+					launchUrl(); 
 					
-				} else {   
+				} else if (doo != null) {
+					
+					var str = doo;
+				    var n = str.includes("users.manage");
+
+					if (n === false) {
+
+					launchUrl(); 
+					
+					}
+					
+				}
+				else {   
 					   var str = doo
 					   var n = str.includes("users.manage");
-						
 						
 						if (n === true) {
 							$('#btn1').removeAttr("disabled");
