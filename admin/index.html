@@ -12,6 +12,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<script>
+		
+		</script>
+		
 	</head>
 	<body>
 	
@@ -172,7 +176,7 @@
 
 	
 	<!-- LIST USERS ACTIONS -->
-		<button type="button" class="btn btn-primary" onclick="getListUsersApiCall()">Get Users</button>
+		<button type="button" class="btn btn-primary" onclick="getListUsersApiCall()" disabled>Get Users</button>
 		<button type="button" class="btn btn-primary" onclick="getListUsersApiCallRefresh()">Refresh Users</button>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -198,7 +202,7 @@
 
 		
 		<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
-		<button type="button" class="btn btn-primary" onclick="getUserApiCall()">Get User</button>
+		<button type="button" class="btn btn-primary" onclick="getUserApiCall()" disabled>Get User</button>
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">Update User</button>
 	
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -364,9 +368,8 @@
 				 console.log(n)
 				
 				if (n === true) {
-					sessionStorage.setItem("role", "admin")
+					$('getListUsersApiCall').removeClass("disabled");
 				}
-				
 
 				function getParameterByName(name, url) {
 					if (!url) url = window.location.href;
@@ -385,6 +388,7 @@
 	</script>
 	
 	<script>
+
 
 	console.log(sessionStorage.getItem("access_token"))
 		
@@ -436,23 +440,9 @@ function launchUrl() {
 		listUsers = baseUrl + "/api/v1/users/?limit=200"
 		url1 = listUsers
 		
+	
+	
 
-		tokenCheck();
-		
-		
-		//Get User
-		
-		//Post User Update
-		
-		
-		//GET Requests via Ajax
-	
-	function tokenCheck () {
-		if (sessionStorage.getItem("access_token") === null) {
-			console.log("sorry")
-			}
-	}
-	
 	function getListUsersApiCallRefresh() {
 		
 		access_token = sessionStorage.getItem("access_token")
