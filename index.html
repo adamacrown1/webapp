@@ -102,39 +102,50 @@
 
 	function setCookie() {
 	
-	window.onload = function() {
+		window.onload = function() {
 		
-	 parse();
+			 parse();
 	
-	}
-
-		function checkToken() {
-			
-			n = sessionStorage.getItem("access_token")
-			m = sessionStorage.getItem("scope")
-			
-			console.log(n)
-			console.log(m)
-			
-			var str = "https://adamacrown1.github.io/webapp/#access_token=eyJraWQiOiJKMW9vQ21ZX3lqZWtkV0h6cWNFZlVQNHcxOWh3cnUwc0hPcDl2dHhDb2xFIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULm44UTRQZEdRdGFOY3V6NmpjeFlqYm52ZUR0M24zTDZqZFRlU1JWVm9IdG8iLCJpc3MiOiJodHRwczovL2Rldi02MDIzMTEub2t0YS5jb20iLCJhdWQiOiJodHRwczovL2Rldi02MDIzMTEub2t0YS5jb20iLCJzdWIiOiJhZGFtYWNyb3duQGljbG91ZC5jb20iLCJpYXQiOjE1NzQ0MzA1MjQsImV4cCI6MTU3NDQzNDEyNCwiY2lkIjoiMG9hMXVudHU5cEM1NFpYekszNTciLCJ1aWQiOiIwMHUxdGg0NTA1ek5PT2hDMjM1NyIsInNjcCI6WyJvcGVuaWQiLCJva3RhLmdyb3Vwcy5yZWFkIiwicHJvZmlsZSIsIm9rdGEudXNlcnMucmVhZCIsIm9rdGEuZ3JvdXBzLm1hbmFnZSIsIm9rdGEudXNlcnMubWFuYWdlIl19.GMw_VaKPdUBUt3DSB8pMMKilUb1LanwKyGrklCSfsO1FEsSSaqUbB2o-WAxwp_HH-1KgYrBrUqBiHD_GBVJSV6cDtq5b0wj9fSd4mIQ0QoVeJdcFnMsq_js-2wlI3SHFlShT8iOiNoro9f2rXxFB4piVEdQ-wYSMc_cVQ7LlKRXXPbMhaxnnp3mfawd0Nyb795-kVq4OqlHI8xpNBCgvO_t9v94L9kV19erj1LpOr1L7uwuf16e4EZZy_q5Oo5r9b6FtZBPaLwe9ySqMpv8Y-fKuNeRrpt6W_i_G2OA4cHW-kJIg3tXS6OlBE5rEpDauOq0PmQWuLEJl596n-sq6Uw&token_type=Bearer&expires_in=3600&scope=openid+okta.groups.read+profile+okta.users.read+okta.groups.manage+okta.users.manage&state=7f5af981-503a-427d-8317-629ea0e92abc"
-			
-			var check = str.includes(".users.read");
-			
-		if (check === false) {
-				
-				launchUrl();
-				
 			}
 		}
 	
+
+		function checkToken() {
+			
+			m = "."
+			n = sessionStorage.getItem("access_token")
+			//m = sessionStorage.getItem("scope")
+		
+			console.log(n)
+			console.log(m)
+			
+			var str = m
+			
+			if (str = null) {
+				
+				console.log("authenticate, please")
+				launchUrl();
+			} else {
+				
+			var check = str.includes(".users.read");
+				
+			if (check === false) {
+						
+				launchUrl();
+						
+					}
+				}
+				
+			}
+			
+						
+			
 function mega() {
 	
 	parse(launchUrl);
 	launchUrl();
 	
 	};
-
-}
 
 function launchUrl() {
 	var state = uuidv4();
