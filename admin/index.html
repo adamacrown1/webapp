@@ -406,9 +406,9 @@
 				console.log(doo)
 				sessionStorage.setItem("scope", doo)	
 
-				if (error !== null) {
+				if (error === "access_denied") {
 					
-					Console.log("does not have access")
+					console.log("does not have access")
 					window.location.replace("https://adamacrown1.github.io/webapp/404/404.html")
 					
 				}
