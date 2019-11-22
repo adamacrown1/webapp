@@ -412,19 +412,7 @@
 					
 					var str = doo;
 				    var n = str.includes("users.manage");
-
-					if (n === false) {
-
-					console.log("error out")
-					window.location.replace("https://adamacrown1.github.io/webapp/404/404.html")
-					
-					}
-					
-				}
-				else {   
-						var str = doo;
-				    	var n = str.includes("users.manage");
-					
+						
 						console.log(n)
 						if (n === true) {
 							$('#btn1').removeAttr("disabled");
@@ -439,6 +427,8 @@
 						}
 
 				}
+				
+				
 				
 			
 				function getParameterByName(name, url) {
