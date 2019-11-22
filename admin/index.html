@@ -209,9 +209,11 @@
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
-		<div class="card">
-			<div id="deleteUserConfirmation" class="card-body">
+		<div class="input-group flex-nowrap">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">Enter ID</span>
 			</div>
+			<input type="text" id="oktaIdDelete" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -374,7 +376,7 @@ function launchUrl() {
 		function postUserApiDeleteCall() {
 				
 				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
-				userId = document.getElementById("oktaId").value;
+				userId = document.getElementById("oktaIdDelete").value;
 				postUserApi = baseUrl + "/api/v1/users/" + userId
 				console.log("GETAPISTART")
 				
