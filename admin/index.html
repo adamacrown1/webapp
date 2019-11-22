@@ -415,7 +415,6 @@ function launchUrl() {
 	
 		<script>
 		
-		
 		//Params
 		baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
 		//userId = "00u1th4505zNOOhC2357"
@@ -423,12 +422,21 @@ function launchUrl() {
 		listUsers = baseUrl + "/api/v1/users/?limit=200"
 		url1 = listUsers
 		
+
+		tokenCheck();
+		
+		
 		//Get User
 		
 		//Post User Update
 		
 		
 		//GET Requests via Ajax
+	
+	function tokenCheck () {
+		if (sessionStorage.getItem("access_token") === null) {
+			console.log("sorry")
+			}
 	
 	function getListUsersApiCallRefresh() {
 		
@@ -463,9 +471,7 @@ function launchUrl() {
 				
 		}
 		
-		
 		// GET USER GROUPS 
-		
 		function getUserGroupsApiCall() {
 				
 				document.getElementById("userGroupsResponse").innerHTML = ""
