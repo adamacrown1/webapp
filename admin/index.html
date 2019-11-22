@@ -205,7 +205,7 @@
 
 		
 		<!-- DELETE SPECIFIC USER ACTIONS -->
-	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete">[x] Delete User</button>
+	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete" onclick="postUserApiDeleteCall()">[x] Delete User</button>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
@@ -385,12 +385,11 @@ function launchUrl() {
 				postPayload = ""
 				console.log(postPayload)
 				
-				method = "DELETE"
+				var method = "DELETE"
 						
 					//	"mobilePhone": "123-456-7890"
 					//}
 			//	}"			
-							
 		
 			postAPI(postUserApi, method, access_token, postPayload, parseUserData);
 
@@ -425,7 +424,7 @@ function launchUrl() {
 				console.log(postUserApiRoles)
 				
 				access_token = sessionStorage.getItem("access_token")
-				method = "POST"
+				var method = "POST"
 
 				postAPI(postUserApiRoles, method, access_token, postPayload, test);
 			
