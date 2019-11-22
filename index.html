@@ -202,7 +202,7 @@
 
 		
 		<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
-		<button type="button" class="btn btn-primary" onclick="getUserApiCall()">Get User</button>
+		<button type="button" class="btn btn-primary" onclick="getUserApiCall()" disabled>Get User</button>
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">Update User</button>
 	
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -368,8 +368,8 @@
 				 console.log(n)
 				
 				if (n === true) {
-					sessionStorage.setItem("role", "admin")
-					$(“#getListUsersApiCall”).removeClass('disabled');
+					sessionStorage.setItem("role", "admin");
+					$('getListUsersApiCall').removeClass("disabled");
 				}
 
 				function getParameterByName(name, url) {
