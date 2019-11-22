@@ -405,7 +405,7 @@ function launchUrl() {
 		
 		function getUserGroupsApiCall() {
 				
-				document.getElementById("response").innerHTML = ""
+				document.getElementById("userGroupsResponse").innerHTML = ""
 						
 				userId = document.getElementById("oktaIdGroups").value
 				console.log(userId)
@@ -571,7 +571,6 @@ function launchUrl() {
 						profileName = response[step].profile.name
 												
 						console.log(profileName)	
-						
 						
 						y = document.getElementById("userGroupsResponse").innerHTML += profileName + "<br>"
 						console.log(y)
