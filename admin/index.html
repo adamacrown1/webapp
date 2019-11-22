@@ -371,24 +371,25 @@
 				console.log(m)
 				
 				var str = m
+				var check = str.includes("users.manage");
 				
 				if (str === null) {
 					
 					console.log("authenticate, please")
 					launchUrl();
 					
-				} else {
-					
-				var check = str.includes("users.manage");
-					
-				if (check === false) {
+				} else if (check === false) {
 							
 					launchUrl();
 							
-						}
-					}
+				} else {
+					
+					parse();
 					
 				}
+		}
+					
+			
 				
 	
 	function parse() {
