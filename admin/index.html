@@ -116,7 +116,7 @@
 					
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" onclick="getUserGroupsApiCall()">Save changes</button>
+						<button type="button" class="btn btn-primary" onclick="postUserGroupsApiCall()">Save changes</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					</div>
 				</div>
@@ -485,7 +485,7 @@ function launchUrl() {
 		}
 		
 		// Update Groups Call
-		function getUserGroupsApiCall() {
+		function postUserGroupsApiCall() {
 						
 				groupId = document.getElementById("desiredGroupId").value
 				userId = document.getElementById("userIdGroup").value
@@ -502,7 +502,7 @@ function launchUrl() {
 				console.log("GETAPISTART")
 
 				//getAPI(getUserApi, access_token, parseUserGroupData)
-				postAPI(getGroupsApi, method, access_token, postPayload, test)
+				postAPI(getGroupsApi, method, access_token, test, test)
 		} 
 		
 		
