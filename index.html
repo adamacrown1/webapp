@@ -98,7 +98,8 @@
 <script>
 
 	setCookie();
-	checkToken(setCookie);
+	
+	//checkToken();
 	
 
 	function setCookie() {
@@ -199,6 +200,12 @@ function launchUrl() {
 					 //var str = doo
 					 //var manageCheck = str.includes("manage");
 					 //console.log(manageCheck)
+					
+					if (doo === null) {
+						
+						launchUrl();
+						
+					}
 					
 
 					function getParameterByName(name, url) {
