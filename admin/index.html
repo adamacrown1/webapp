@@ -568,11 +568,12 @@ function launchUrl() {
 							
 						for (step = 0; step < end ; step++) {
 						
+						profileId = response[step].id
 						profileName = response[step].profile.name
 												
 						console.log(profileName)	
 						
-						y = document.getElementById("userGroupsResponse").innerHTML += profileName + "<br>"
+						y = document.getElementById("userGroupsResponse").innerHTML += id + " | " + profileName + "<br>"
 						console.log(y)
 						}
 						
