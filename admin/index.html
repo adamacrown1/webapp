@@ -395,6 +395,8 @@
 	function parse() {
 				
 				// query string: ?foo=lorem&bar=&baz
+				
+				var error = getParameterByName('error');
 				var foo = getParameterByName('access_token'); // "lorem"
 				console.log(foo)
 				sessionStorage.setItem("access_token", foo)
@@ -404,6 +406,13 @@
 				console.log(doo)
 				sessionStorage.setItem("scope", doo)	
 
+				if (error !== null) {
+					
+					Console.log("does not have access")
+					window.location.replace("https://adamacrown1.github.io/webapp/404/404.html")
+					
+				}
+				
 				if (doo === null) {
 					
 					launchUrl(); 
