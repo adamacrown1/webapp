@@ -176,8 +176,8 @@
 
 	
 	<!-- LIST USERS ACTIONS -->
-		<button type="button" class="btn btn-primary" id="getListUsersApiCallbtn" onclick="getListUsersApiCall()" disabled>Get Users</button>
-		<button type="button" class="btn btn-primary" onclick="getListUsersApiCallRefresh()">Refresh Users</button>
+		<button type="button" class="btn btn-primary" id="btn1" onclick="getListUsersApiCall()" disabled>Get Users</button>
+		<button type="button" class="btn btn-primary" id="btn2" onclick="getListUsersApiCallRefresh()" disabled>Refresh Users</button>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
@@ -202,8 +202,8 @@
 
 		
 		<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
-		<button type="button" class="btn btn-primary" onclick="getUserApiCall()" disabled>Get User</button>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowUpdate">Update User</button>
+		<button type="button" class="btn btn-primary" id="btn3" onclick="getUserApiCall()" disabled>Get User</button>
+		<button type="button" class="btn btn-primary" id="btn4" data-toggle="modal" data-target="#modalWindowUpdate" disabled>Update User</button>
 	
 		<h3> <span class="badge badge-secondary"></span></h3>
 	
@@ -229,7 +229,7 @@
 
 				
 				<!-- GET USER, VIEW USER, UPDATE USER ACTIONS -->
-				<button type="button" class="btn btn-primary" onclick="getUserGroupsApiCall()">Get User Groups</button>
+				<button type="button" class="btn btn-primary" id="btn5" onclick="getUserGroupsApiCall()" disabled>Get User Groups</button>
 			
 				<h3> <span class="badge badge-secondary"></span></h3>
 			
@@ -265,7 +265,7 @@
 		<h3> <span class="badge badge-secondary"></span></h3>
 
 		<!-- PROMOTE USER TO ADMIN ACTION -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowGroupAdmin">Add to Group</button>
+		<button type="button" class="btn btn-primary" id="btn6" data-toggle="modal" data-target="#modalWindowGroupAdmin" disabled>Add to Group</button>
 		
 
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -285,7 +285,7 @@
 		<h3> <span class="badge badge-secondary"></span></h3>
 
 		<!-- PROMOTE USER TO ADMIN ACTION -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowAdmin">Promote to Admin</button>
+		<button type="button" class="btn btn-primary" id="btn7" data-toggle="modal" data-target="#modalWindowAdmin" disabled>Promote to Admin</button>
 		
 
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -307,7 +307,7 @@
 		<div class="container">
 		
 		<!-- DELETE SPECIFIC USER ACTIONS -->
-	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete" onclick="postUserApiDeleteCall()">[x] Delete User</button>
+	    <button type="button" class="btn btn-primary" id="btn8" data-toggle="modal" data-target="#modalWindowDelete" onclick="postUserApiDeleteCall()" disabled>[x] Delete User</button>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
@@ -333,7 +333,7 @@
 		<h3> <span class="badge badge-secondary"></span></h3>
 
 		
-	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowDelete2" onclick="postUserApiActivateCall()">[x] Activate User</button>
+	    <button type="button" class="btn btn-primary" data-toggle="modal" id="btn9" data-target="#modalWindowDelete2" onclick="postUserApiActivateCall()" disabled>[x] Activate User</button>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
@@ -368,7 +368,15 @@
 				 console.log(n)
 				
 				if (n === true) {
-					$('#getListUsersApiCallbtn').removeAttr("disabled");
+					$('#btn1').removeAttr("disabled");
+					$('#btn2').removeAttr("disabled");
+					$('#btn3').removeAttr("disabled");
+					$('#btn4').removeAttr("disabled");
+					$('#btn5').removeAttr("disabled");
+					$('#btn6').removeAttr("disabled");
+					$('#btn7').removeAttr("disabled");
+					$('#btn8').removeAttr("disabled");
+					$('#btn9').removeAttr("disabled");
 				}
 
 				function getParameterByName(name, url) {
