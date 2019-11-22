@@ -412,9 +412,12 @@
 					
 					var str = doo;
 				    var n = str.includes("users.manage");
+					console.log("Scope Found?" + n)
 						
-						console.log(n)
 						if (n === true) {
+							
+							console.log("true")
+														
 							$('#btn1').removeAttr("disabled");
 							$('#btn2').removeAttr("disabled");
 							$('#btn3').removeAttr("disabled");
@@ -424,9 +427,12 @@
 							$('#btn7').removeAttr("disabled");
 							$('#btn8').removeAttr("disabled");
 							$('#btn9').removeAttr("disabled");
-						} else if (n === false ) {
 							
+						} else if (n === false) {
+							
+							console.log("false")
 							window.location.replace("https://adamacrown1.github.io/webapp/404/404.html")
+						
 						}
 
 				}
