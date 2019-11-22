@@ -15,47 +15,7 @@
 		
 		<script>
 		
-			setCookie();				
-
-				function setCookie() {
-				
-					window.onload = function() {
 					
-						 parse();
-				
-						}
-					}
-
-					function checkToken(callback) {
-						
-						n = sessionStorage.getItem("access_token")
-						m = sessionStorage.getItem("scope")
-					
-						console.log(n)
-						console.log(m)
-						
-						var str = m
-						
-						if (str === null) {
-							
-							console.log("authenticate, please")
-							launchUrl();
-							
-						} else {
-							
-						var check = str.includes(".manage.");
-							
-						if (check === false) {
-									
-							launchUrl();
-									
-								}
-							}
-							
-						}
-						
-		
-		
 		</script>
 	</head>
 	<body>
@@ -391,6 +351,46 @@
 	
 	<script>
 	
+	setCookie();				
+
+		function setCookie() {
+		
+			window.onload = function() {
+			
+				 parse();
+		
+				}
+			}
+
+			function checkToken(callback) {
+				
+				n = sessionStorage.getItem("access_token")
+				m = sessionStorage.getItem("scope")
+			
+				console.log(n)
+				console.log(m)
+				
+				var str = m
+				
+				if (str === null) {
+					
+					console.log("authenticate, please")
+					launchUrl();
+					
+				} else {
+					
+				var check = str.includes("users.manage");
+					
+				if (check === false) {
+							
+					launchUrl();
+							
+						}
+					}
+					
+				}
+				
+	
 	function parse() {
 				
 				// query string: ?foo=lorem&bar=&baz
@@ -404,21 +404,25 @@
 				sessionStorage.setItem("scope", doo)
 				//document.getElementById("access_token").innerHTML = foo
 				
-				 var str = doo
-				 var n = str.includes("manage");
-				 console.log(n)
+				 //var str = doo
+				// var n = str.includes("users.manage");
+				 //console.log(n)
 				
-				if (n === true) {
-					$('#btn1').removeAttr("disabled");
-					$('#btn2').removeAttr("disabled");
-					$('#btn3').removeAttr("disabled");
-					$('#btn4').removeAttr("disabled");
-					$('#btn5').removeAttr("disabled");
-					$('#btn6').removeAttr("disabled");
-					$('#btn7').removeAttr("disabled");
-					$('#btn8').removeAttr("disabled");
-					$('#btn9').removeAttr("disabled");
-				}
+				
+				
+				
+				
+				//if (n === true) {
+			//		$('#btn1').removeAttr("disabled");
+			//		$('#btn2').removeAttr("disabled");
+			//		$('#btn3').removeAttr("disabled");
+			//		$('#btn4').removeAttr("disabled");
+			//		$('#btn5').removeAttr("disabled");
+			//		$('#btn6').removeAttr("disabled");
+			//		$('#btn7').removeAttr("disabled");
+			//		$('#btn8').removeAttr("disabled");
+			//		$('#btn9').removeAttr("disabled");
+			//	}
 
 				function getParameterByName(name, url) {
 					if (!url) url = window.location.href;
