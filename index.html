@@ -97,8 +97,8 @@
 
 <script>
 
-	checkToken();
-	setCookie();
+	checkToken(setCookie);
+	//setCookie();
 
 	function setCookie() {
 	
@@ -109,9 +109,8 @@
 			}
 		}
 
-		function checkToken() {
+		function checkToken(callback) {
 			
-			m = "."
 			n = sessionStorage.getItem("access_token")
 			m = sessionStorage.getItem("scope")
 		
