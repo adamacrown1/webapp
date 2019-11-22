@@ -404,25 +404,33 @@
 				sessionStorage.setItem("scope", doo)
 				//document.getElementById("access_token").innerHTML = foo
 				
-				 //var str = doo
-				// var n = str.includes("users.manage");
-				 //console.log(n)
+							 //console.log(n)
 				
 				
+				if (doo === null) {
+					
+					launchUrl();
+					
+				} else {   
+					   var str = doo
+					   var n = str.includes("users.manage");
+						
+						
+						if (n === true) {
+							$('#btn1').removeAttr("disabled");
+							$('#btn2').removeAttr("disabled");
+							$('#btn3').removeAttr("disabled");
+							$('#btn4').removeAttr("disabled");
+							$('#btn5').removeAttr("disabled");
+							$('#btn6').removeAttr("disabled");
+							$('#btn7').removeAttr("disabled");
+							$('#btn8').removeAttr("disabled");
+							$('#btn9').removeAttr("disabled");
+						}
+
+				}
 				
 				
-				
-				//if (n === true) {
-			//		$('#btn1').removeAttr("disabled");
-			//		$('#btn2').removeAttr("disabled");
-			//		$('#btn3').removeAttr("disabled");
-			//		$('#btn4').removeAttr("disabled");
-			//		$('#btn5').removeAttr("disabled");
-			//		$('#btn6').removeAttr("disabled");
-			//		$('#btn7').removeAttr("disabled");
-			//		$('#btn8').removeAttr("disabled");
-			//		$('#btn9').removeAttr("disabled");
-			//	}
 
 				function getParameterByName(name, url) {
 					if (!url) url = window.location.href;
@@ -438,9 +446,6 @@
 		}
 		
 
-	</script>
-	
-	<script>
 
 
 	console.log(sessionStorage.getItem("access_token"))
@@ -482,9 +487,6 @@ function launchUrl() {
 		
 		}
 	
-	</script>
-	
-		<script>
 		
 		//Params
 		baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
