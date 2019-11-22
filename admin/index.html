@@ -353,6 +353,12 @@
 				console.log(foo)
 				sessionStorage.setItem("access_token", foo)
 				document.getElementById("access_token").innerHTML = foo
+				
+				var doo = getParameterByName('scope'); // "lorem"
+				console.log(doo)
+				sessionStorage.setItem("scope", doo)
+				//document.getElementById("access_token").innerHTML = foo
+				
 
 				function getParameterByName(name, url) {
 					if (!url) url = window.location.href;
@@ -371,12 +377,8 @@
 	</script>
 	
 	<script>
-	
+
 	console.log(sessionStorage.getItem("access_token"))
-	
-		$( window ).on( 'hashchange', function( e ) {
-			console.log( 'hash changed' );
-		} );
 		
 function launchUrl() {
 	var state = uuidv4();
