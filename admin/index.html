@@ -12,9 +12,49 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		
 		<script>
 		
-		</script>
+		launchUrl();
+		function launchUrl() {
+			var state = uuidv4();
+			var nonce = uuidv4();
+			
+			console.log(state)
+			console.log(nonce)
+			
+			var config = {
+					client_id: "0oa1vk06xoo6xSAE5357",
+					redirect_uri: "https://adamacrown1.github.io/webapp/admin/",
+					authorization_endpoint: "https://dev-602311.okta.com/oauth2/v1/authorize",
+					token_endpoint: "https://dev-602311.okta.com/oauth2/v1/token",
+					requested_scopes: "openid profile okta.users.read okta.users.manage okta.roles.manage okta.roles.read okta.groups.read okta.groups.manage",
+			
+			};
+
+			var url = config.authorization_endpoint 
+						+ "?response_type=token"
+						+ "&client_id="+encodeURIComponent(config.client_id)
+						+ "&state="+encodeURIComponent(state)
+						+ "&scope="+encodeURIComponent(config.requested_scopes)
+						+ "&redirect_uri="+encodeURIComponent(config.redirect_uri)
+						+ "&nonce="+"1234";
+				// Redirect to the authorization server
+				window.location = url;
+				console.log(url);
+					
+					function uuidv4() {
+						return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+							var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+							 return v.toString(16);
+							
+						});
+					}
+				
+				}
+			
+			</script>
+		
 		
 	</head>
 	<body>
@@ -448,7 +488,7 @@ function launchUrl() {
 		listUsers = baseUrl + "/api/v1/users/?limit=200"
 		url1 = listUsers
 		
-	
+
 	
 
 	function getListUsersApiCallRefresh() {
