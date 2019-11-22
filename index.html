@@ -93,10 +93,25 @@
 
 <script>
 
+	setCookie();
+
+	
+	function setCookie() {
+	
+	window.onload = function() {
+		
+	 parse();
+	
+	}
+	
 function mega() {
 	
 	parse(launchUrl);
 	launchUrl();
+	
+	
+	
+	};
 
 }
 
@@ -153,7 +168,6 @@ function launchUrl() {
 					 var n = str.includes("manage");
 					 console.log(n)
 					
-	
 
 					function getParameterByName(name, url) {
 						if (!url) url = window.location.href;
