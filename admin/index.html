@@ -402,15 +402,13 @@
 				
 				var doo = getParameterByName('scope'); // "lorem"
 				console.log(doo)
-				sessionStorage.setItem("scope", doo)
-			
-				 				
+				sessionStorage.setItem("scope", doo)	
 
 				if (doo === null) {
 					
 					launchUrl(); 
 					
-				} else if (doo != null) {
+				} else if (doo !== null) {
 					
 					var str = doo;
 				    var n = str.includes("users.manage");
