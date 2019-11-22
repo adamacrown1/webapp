@@ -87,6 +87,46 @@
 		
 		</div>	
 		
+		<!-- Modal Window for Group Add -->
+		
+		<div class="modal" id="modalWindowGroupAdmin" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Promote to Group</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					<div class="input-group flex-nowrap">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping">User ID</span>
+						</div>
+						<input type="text" id="userIdGroup" class="form-control" placeholder="Okta ID" aria-label="OktaId" aria-describedby="addon-wrapping">
+					</div>
+					
+					<div class="input-group flex-nowrap">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping">Group ID</span>
+						</div>
+						<input type="text" id="desiredGroupId" class="form-control" placeholder="Group ID" aria-label="Role" aria-describedby="addon-wrapping">
+					</div>
+					
+					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="getUserGroupsApiCall()">Save changes</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		
+		<!-- Modal Window for Admin -->
+		
 		<div class="modal" id="modalWindowAdmin" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -207,6 +247,29 @@
 
 				</div>
 		
+		
+		<!-- Add to Group -->
+		
+		<div class="container">
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+			<nav id="navbar-example2" class="navbar navbar-light bg-light">
+			 <a class="navbar-brand" href="#">Update Group Membership</a>
+			</nav>
+		
+		<h3> <span class="badge badge-secondary"></span></h3>
+
+		<!-- PROMOTE USER TO ADMIN ACTION -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowGroupAdmin">Add to Group</button>
+		
+
+		<h3> <span class="badge badge-secondary"></span></h3>
+		
+		</div>
+
+		
+		<!-- Admin Functions --> 
 		<div class="container">
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -218,7 +281,7 @@
 		<h3> <span class="badge badge-secondary"></span></h3>
 
 		<!-- PROMOTE USER TO ADMIN ACTION -->
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowAdmin">Promote to Admin</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalWindowAdmin">Promote to Admin</button>
 		
 
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -410,7 +473,7 @@ function launchUrl() {
 				userId = document.getElementById("oktaIdGroups").value
 				console.log(userId)
 				
-				getUserApi = baseUrl + "/api/v1/users/" + userId + "/groups"
+				getUserApi = baseUrl + "/api/v1/users/" + userId + "/groups" 
 				console.log(getUserApi)
 				
 				access_token = sessionStorage.getItem("access_token")
@@ -420,6 +483,32 @@ function launchUrl() {
 				getAPI(getUserApi, access_token, parseUserGroupData)
 				
 		}
+		
+		// Update Groups Call
+		function getUserGroupsApiCall() {
+						
+				groupId = document.getElementById("desiredGroupId").value
+				userId = document.getElementById("userIdGroup").value
+				
+				console.log(groupId)
+				console.log(userId)
+				
+				getGroupsApi = baseUrl + "/api/v1/groups/" + groupId + "/users/" + userId
+				console.log(getGroupsApi)
+				
+				access_token = sessionStorage.getItem("access_token")
+				var method = "PUT"
+				
+				console.log("GETAPISTART")
+
+				//getAPI(getUserApi, access_token, parseUserGroupData)
+				postAPI(getGroupsApi, method, access_token, postPayload, test)
+		} 
+		
+		
+		
+		
+		
 		
 		//Post User
 		function postUserApiCall() {
