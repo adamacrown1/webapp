@@ -447,8 +447,21 @@ function launchUrl() {
 		listUsers = baseUrl + "/api/v1/users/?limit=200"
 		url1 = listUsers
 		
+checkToken();
 
+function checkToken() {
 	
+	n = sessionStorage.getItem("access_token")
+	m = sessionStorage.getItem("scope")
+	
+	if (n === null || m === null) {
+		
+		window.location.replace("https://adamacrown1.github.io/webapp/404/404.html")
+		
+	}
+	
+}
+
 
 	function getListUsersApiCallRefresh() {
 		
