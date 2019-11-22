@@ -176,7 +176,7 @@
 
 	
 	<!-- LIST USERS ACTIONS -->
-		<button type="button" class="btn btn-primary" onclick="getListUsersApiCall()" disabled>Get Users</button>
+		<button type="button" class="btn btn-primary" id="getListUsersApiCallbtn" onclick="getListUsersApiCall()" disabled>Get Users</button>
 		<button type="button" class="btn btn-primary" onclick="getListUsersApiCallRefresh()">Refresh Users</button>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -368,7 +368,7 @@
 				 console.log(n)
 				
 				if (n === true) {
-					$('#getListUsersApiCall').removeClass("disabled");
+					$('#getListUsersApiCallbtn').removeClass("disabled");
 				}
 
 				function getParameterByName(name, url) {
