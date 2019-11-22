@@ -403,12 +403,9 @@
 				var doo = getParameterByName('scope'); // "lorem"
 				console.log(doo)
 				sessionStorage.setItem("scope", doo)
-				//document.getElementById("access_token").innerHTML = foo
-				
-							 //console.log(n)
-				
+			
 				 				
-				
+
 				if (doo === null) {
 					
 					launchUrl(); 
@@ -427,9 +424,10 @@
 					
 				}
 				else {   
-					   var str = doo
-					   var n = str.includes("users.manage");
-						
+						var str = doo;
+				    	var n = str.includes("users.manage");
+					
+						console.log(n)
 						if (n === true) {
 							$('#btn1').removeAttr("disabled");
 							$('#btn2').removeAttr("disabled");
@@ -444,8 +442,7 @@
 
 				}
 				
-				
-
+			
 				function getParameterByName(name, url) {
 					if (!url) url = window.location.href;
 					name = name.replace(/[\[\]]/g, '\\$&');
