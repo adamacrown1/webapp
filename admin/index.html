@@ -374,9 +374,9 @@
 	
 	console.log(sessionStorage.getItem("access_token"))
 	
-	$(window).bind('hashchange', function() {
-	     console.log("change")
-	});
+		$( window ).on( 'hashchange', function( e ) {
+			console.log( 'hash changed' );
+		} );
 		
 function launchUrl() {
 	var state = uuidv4();
