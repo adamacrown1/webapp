@@ -91,7 +91,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">Modal title</h5>
+						<h5 class="modal-title">Promote to Admin</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -359,17 +359,54 @@ function launchUrl() {
 							
 				postPayload = "{ " + '"profile"' + ': { "firstName": "' + firstName + '", "lastName": "' + lastName + '", "email": "' + email + '", "mobilePhone": "' + mobile + '" } }'
 				console.log(postPayload)
+				
+				method = "POST"
 						
 					//	"mobilePhone": "123-456-7890"
 					//}
 			//	}"			
 							
 		
-			postAPI(postUserApi, access_token, postPayload, parseUserData);
+			postAPI(postUserApi, method, access_token, postPayload, parseUserData);
 			
 		
 		
 		}
+		
+		//ADMIN - DELETE
+		
+		function postUserApiCall() {
+				
+				baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+				userId = document.getElementById("oktaId").value;
+				postUserApi = baseUrl + "/api/v1/users/" + userId
+				console.log("GETAPISTART")
+				
+				access_token = sessionStorage.getItem("access_token")
+			
+				console.log(postUserApi)
+							
+				postPayload = ""
+				console.log(postPayload)
+				
+				method = "DELETE"
+						
+					//	"mobilePhone": "123-456-7890"
+					//}
+			//	}"			
+							
+		
+			postAPI(postUserApi, method, access_token, postPayload, parseUserData);
+
+		}
+
+		
+		
+		
+		
+		
+		
+		
 		
 		function test () {
 			console.log("test end")
@@ -392,8 +429,9 @@ function launchUrl() {
 				console.log(postUserApiRoles)
 				
 				access_token = sessionStorage.getItem("access_token")
+				method = "POST"
 
-				postAPI(postUserApiRoles, access_token, postPayload, test);
+				postAPI(postUserApiRoles, method, access_token, postPayload, test);
 			
 		
 		
@@ -474,12 +512,12 @@ function launchUrl() {
 		
 }
 
-function postAPI(url1, access_token, postPayload, callback) {
+function postAPI(url1, method, access_token, postPayload, callback) {
 	
 		$.ajax({
 
 			url : url1,
-			type : 'POST',
+			type : method,
 			data : postPayload,
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Authorization', 'Bearer ' + access_token),
