@@ -191,7 +191,7 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="addon-wrapping">Enter ID</span>
 			</div>
-			<input type="text" id="oktaId" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
+			<input type="text" id="getUserOktaId" class="form-control" placeholder="Okta ID" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
@@ -368,9 +368,6 @@
 				}
 		}
 					
-			
-				
-	
 	function parse() {
 				
 				// query string: ?foo=lorem&bar=&baz
@@ -489,46 +486,59 @@
 
 		}
 
-		//Params
+		//API Params
 		baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
+		limit100 = "limit=100"
+		limit200 = "limit=200"
 		
-		//listUsers
-		listUsers = baseUrl + "/api/v1/users/?limit=200"
+		//accessToken
+		targetAccessToken = sessionStorage.getItem("access_token")
 		
+		//Users
+		usersAPI = baseUrl + "/api/v1/users/"
+		
+		//List All Users Function
 		function getListUsers() {
 					
-			//baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
-
-			targetUrl = listUsers
+			//Clear input field for new payload
+			document.getElementById("getListUsersBody").innerHTML = ""
+					
+			//Function inputs
+			targetUrl = usersAPI + "?" + limit200
 			targetMethod = 'GET'
-			targetAccessToken = sessionStorage.getItem("access_token")
+			targetAccessToken = targetAccessToken
 			targetPayload = ''
 			
-			document.getElementById("getListUsersBody").innerHTML = ""
-			
+			//Log out actions
 			console.log("Starting getListUsers API Call")
 			console.log(listUsers)
 			
+			//Start API call
 			callAPI(targetUrl, targetMethod, targetAccessToken, targetPayload, parseData);
 			
 			}
 		
-		//Get User
+		//Get Single User Function
 		function getUserApiCall() {
 				
-				userId = document.getElementById("oktaId").value
-				console.log(userId)
-				
-				getUserApi = baseUrl + "/api/v1/users/" + userId
-				console.log(getUserApi)
-				
-				access_token = sessionStorage.getItem("access_token")
-				
-				console.log("GETAPISTART")
-
-				getAPI(getUserApi, access_token, parseUserData)
-				
-		}
+			//Input from Get Users section field
+			userId = document.getElementById("getUserOktaId").value
+			
+			//Function inputs
+			targetUrl = usersAPI + userId
+			targetMethod = 'GET'
+			targetAccessToken = targetAccessToken
+			targetPayload = ''
+			
+			//Log out actions
+			console.log("Starting getListUsers API Call")
+			console.log("Okta ID: " + userId)
+			console.log("API Call " + getUserApi)
+		
+			//Start API call
+			callAPI(targetUrl, targetMethod, targetAccessToken,targetPayload, parseUserData)
+					
+			}
 		
 		// GET USER GROUPS 
 		function getUserGroupsApiCall() {
