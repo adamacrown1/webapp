@@ -174,16 +174,15 @@
 	 <a class="navbar-brand" href="#">Get Users</a>
 	</nav>
 	<h3> <span class="badge badge-secondary"></span></h3>
-
 	
 	<!-- LIST USERS ACTIONS -->
-		<button type="button" class="btn btn-primary" id="btn1" onclick="getListUsersApiCall()" disabled>Get Users</button>
-		<button type="button" class="btn btn-primary" id="btn2" onclick="getListUsersApiCallRefresh()" disabled>Refresh Users</button>
+		<button type="button" class="btn btn-primary" id="btn1" onclick="getListUsers()" disabled>Get Users</button>
+		<button type="button" class="btn btn-primary" id="btn2" onclick="getListUsers()" disabled>Refresh Users</button>
 		
 		<h3> <span class="badge badge-secondary"></span></h3>
 		
 		<div class="card">
-			<div id="response" class="card-body">
+			<div id="getListUsersBody" class="card-body">
 			</div>
 		</div>
 		
@@ -353,14 +352,14 @@
 	
 	setCookie();				
 
-		function setCookie() {
+	function setCookie() {
 		
-			window.onload = function() {
-			
-				 parse();
+		window.onload = function() {
 		
-				}
+			 parse();
+
 			}
+		}
 
 			function checkToken(callback) {
 				
@@ -516,22 +515,23 @@ function launchUrl() {
 		url1 = listUsers
 		
 
+		function getListUsers() {
+					
+			//baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
 
-	function getListUsersApiCallRefresh() {
-		
-		access_token = sessionStorage.getItem("access_token")
-		document.getElementById("response").innerHTML = ""
-		console.log("GETAPISTART")
-		getAPI(url1, access_token, parseData);
-		
-		}
-		
-		function getListUsersApiCall() {
+			targetUrl = baseUrl + "/api/v1/users/?limit=200"
+			targetMethod = 'GET'
+			targetAccessToken = sessionStorage.getItem("access_token")
+			targetPayload = ''
 			
-			access_token = sessionStorage.getItem("access_token")
-			console.log("GETAPISTART")
-			getAPI(url1, access_token, parseData);
+			document.getElementById("getListUsersBody").innerHTML = ""
+			
+			console.log("Starting getListUsers API Call")
+			
+			callAPI(targetUrl, targetMethod, targetAccessToken, targetPayload, parseData);
+			
 			}
+
 		
 		//Get User
 		function getUserApiCall() {
@@ -775,65 +775,49 @@ function launchUrl() {
 		}
 		
 		//}
+	
+	
+	// --- Ajax Function to Call APIs ---
+	// Needs Error Handling
+	
+	function callAPI(targetUrl, targetMethod, targetAccessToken, targetPayload, callback) {
+	
+		$.ajax({
+			
+			url : url1,
+			type : targetMethod,
+			data : targetPayload,
+			beforeSend: function(xhr) {
+				
+				xhr.setRequestHeader('Authorization', 'Bearer ' + targetAccessToken),
+				xhr.setRequestHeader('Accept', 'application/json'),
+				xhr.setRequestHeader('Content-Type', 'application/json');
+				
+			},
+
+			success : function(data) {              
+				
+				response = data
+				
+				console.log("vvv Successful API POST - Response Below vvv")
+				console.log(response)
+				
+				callback();
+				
+			},
+			error : function(request, error) {
+				
+				console.log("vvv Unsuccessful API POST - Response Below vvv")
+				console.log(JSON.stringify(request));
+			
+			}
+			
+		});
+		
 	}
-	
-
-	function getAPI(url1, access_token, callback) {
-	
-		$.ajax({
-
-			url : url1,
-			type : 'GET',
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Authorization', 'Bearer ' + access_token),
-					xhr.setRequestHeader('Accept', 'application/json'),
-					xhr.setRequestHeader('Content-Type', 'application/json');
-			},
-
-			success : function(data) {              
-				//alert(JSON.stringify(data));
-				response = data
-				console.log("GETAPIMIDDLE1")
-				console.log(response)
-				callback();
-			},
-			error : function(request,error)
-			{
-				alert("Request: "+JSON.stringify(request));
-			}
-		});
-		
-}
-
-function postAPI(url1, method, access_token, postPayload, callback) {
-	
-		$.ajax({
-
-			url : url1,
-			type : method,
-			data : postPayload,
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Authorization', 'Bearer ' + access_token),
-					xhr.setRequestHeader('Accept', 'application/json'),
-					xhr.setRequestHeader('Content-Type', 'application/json');
-			},
-
-			success : function(data) {              
-				//alert(JSON.stringify(data));
-				response = data
-				console.log("GETAPIMIDDLE1")
-				console.log(response)
-				callback();
-			},
-			error : function(request,error)
-			{
-				console.log("Request: "+JSON.stringify(request));
-			}
-		});
-		
-}
 		
 		</script>
 		
 	</body>
+
 </html>
