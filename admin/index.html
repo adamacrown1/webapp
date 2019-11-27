@@ -491,14 +491,11 @@
 		limit100 = "limit=100"
 		limit200 = "limit=200"
 		
-		//accessToken
-		targetAccessToken = sessionStorage.getItem("access_token")
-		
 		//Users
 		usersAPI = baseUrl + "/api/v1/users/"
 		
 		//List All Users Function
-		function getListUsers(targetAccessToken) {
+		function getListUsers() {
 					
 			//Clear input field for new payload
 			document.getElementById("getListUsersBody").innerHTML = ""
@@ -506,7 +503,7 @@
 			//Function inputs
 			targetUrl = usersAPI + "?" + limit200
 			targetMethod = 'GET'
-			targetAccessToken = targetAccessToken
+			targetAccessToken = sessionStorage.getItem("access_token")
 			targetPayload = ''
 			
 			//Log out actions
