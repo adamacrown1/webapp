@@ -160,7 +160,6 @@
 
 		<!-- LIST USERS ACTIONS -->
 		<button type="button" class="btn btn-primary" id="btn1" onclick="getListUsers()" disabled>Get Users</button>
-		<button type="button" class="btn btn-primary" id="btn2" onclick="getListUsers()" disabled>Refresh Users</button>
 
 		<h3> <span class="badge badge-secondary"></span></h3>
 
@@ -490,19 +489,17 @@
 
 		}
 
-	
 		//Params
 		baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
-		//userId = "00u1th4505zNOOhC2357"
-		//List Users APIs
+		
+		//listUsers
 		listUsers = baseUrl + "/api/v1/users/?limit=200"
-		url1 = listUsers
 		
 		function getListUsers() {
 					
 			//baseUrl = "https://cors-anywhere.herokuapp.com/https://dev-602311.okta.com"
 
-			targetUrl = baseUrl + "/api/v1/users/?limit=200"
+			targetUrl = listUsers
 			targetMethod = 'GET'
 			targetAccessToken = sessionStorage.getItem("access_token")
 			targetPayload = ''
@@ -510,6 +507,7 @@
 			document.getElementById("getListUsersBody").innerHTML = ""
 			
 			console.log("Starting getListUsers API Call")
+			console.log(listUsers)
 			
 			callAPI(targetUrl, targetMethod, targetAccessToken, targetPayload, parseData);
 			
